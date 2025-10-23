@@ -1,0 +1,196 @@
+:root{
+    --black: #000;
+    --fblack: #2B2F3A;
+    --bgwhite: #E9EFF6;
+    --white: #fff;
+    --cardbg: #aaa;
+    --green: #39FF14;
+    --b_green: hsl(120, 61%, 42%);
+    --blue: #0077FF;
+    --purple: #8156b4;
+    --dark_purple: #6C3BAA ;
+    --bg_color: #1f1f1f;
+    --footer_bg: #111111;
+}  
+
+
+@keyframes fadeUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.intro-text {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.65)),
+        url('testimonial cover.jpg');
+    height: 500px;
+    width: 98.9vw;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--white);
+    box-shadow: inset 0 -80px 100px rgba(0, 0, 0, 0.4);
+    margin-top: -20px;
+}
+
+.intro-text h2 {
+    font-size: 3.4rem;
+    line-height: 1.6;
+    max-width: 900px;
+    font-weight: 600;
+    font-family: built tilting;
+}
+
+.fade-in-up {
+    animation: fadeUp 1.2s ease-out both;
+}
+
+/* testimonials */
+.testimonials {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: var(--bg_color);
+    margin-top: 40px;
+}
+#testimonials h1{
+    font-size: 50px;
+    font-family: built tilting;
+    text-align: center;
+    color: var(--dark_purple);
+    padding-bottom: 30px;
+    padding-top: 30px;
+}
+.testimonial-card {
+    background-color: var(--fblack);
+    color: var(--white);
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+}
+
+.client-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.client-photo {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--purple);
+}
+
+.client-name {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--purple);
+    font-family: 'open_sans', sans-serif;
+    margin: 0;
+}
+
+.quote h3 {
+    font-size: 18px;
+    font-family: 'open_sans', sans-serif;
+    font-weight: bold;
+    margin: 0;
+    margin-bottom: 20px;
+    color: var(--white);
+}
+
+.testimonial-text {
+    font-family: 'open_sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-top: 5px;
+}
+
+.progress-summary {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--green);
+    margin-top: 10px;
+}
+
+
+/* quote */
+.quote-highlight {
+    text-align: center;
+    background-color: var(--dark_purple);
+    padding: 50px 20px;
+    color: var(--white);
+    margin-top: 80px;
+    margin-bottom: 80px;
+    border-top: 4px solid var(--b_green);
+    border-bottom: 4px solid var(--b_green);
+}
+
+.quote-highlight blockquote {
+    font-size: 28px;
+    font-style: italic;
+    font-weight: 500;
+    font-family: 'built tilting';
+}
+
+/* CTA */
+.call-to-action {
+    padding-top: 125px;
+    background-image: url(cto-img.jpg);
+    height: 375px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    color: var(--white);
+}
+
+#cta_container{
+    background: var(--dark_purple);
+    border-radius: 10px;
+    padding-top: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 50%;
+    margin-left: 25%;
+    font-family: built tilting;
+}
+
+.call-to-action p{
+    font-family: open_sans;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.submit-review-btn {
+    background-color: var(--b_green);
+    border: none;
+    padding: 15px 30px;
+    color: var(--white);
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 40px;
+}

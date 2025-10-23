@@ -1,0 +1,295 @@
+:root{
+    --black: #000;
+    --fblack: #2B2F3A;
+    --bgwhite: #E9EFF6;
+    --white: #fff;
+    --cardbg: #aaa;
+    --green: #39FF14;
+    --b_green: hsl(120, 61%, 42%);
+    --blue: #0077FF;
+    --purple: #8156b4;
+    --dark_purple: #6C3BAA ;
+    --bg_color: #1f1f1f;
+    --footer_bg: #111111;
+} 
+
+.top_cover {
+    margin-top: -30px;
+    background: url(woman-1730325_1280.jpg);
+    text-align: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: var(--white);
+    height: 410px;
+    width: 100%;
+}
+.top_cover h1{
+    font-size: 45px;
+    font-family: built tilting;
+    padding-top: 200px;
+}
+
+.top_cover p{
+    font-size: 20px;
+    font-family: open_sans;
+}
+
+.bespoke_c{
+    padding-top: 50px;
+    color: var(--white);
+    height: 200px;
+    margin-bottom: 50px;
+}
+.bespoke_c h1{
+    color: var(--purple);
+    font-family: built tilting;
+    font-size: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.bespoke_c p{
+    font-family: open_sans;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 18px;
+}
+
+.who-its-for{
+    background-color: #292430;
+    height: 500px;
+    padding-top: 20px;
+    padding-bottom: 100px;
+}
+
+.who-its-for h1{
+    font-family: built tilting;
+    text-align: center;
+    color: var(--dark_purple);
+    margin-bottom: 30px;
+    font-size: 45px;
+}
+
+.tabs{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: space-around;
+    gap: 20px;
+    overflow: hidden;
+    height: 400px;
+    width: 98vw;
+}
+
+.tab{
+    position: relative;
+    width: 20%;
+    height: inherit;
+    padding: 20px;
+    background: rgb(150,150,150);
+    cursor: pointer;
+    transition: width .5s ease;
+    border-radius: 25px;
+}
+ 
+.tab img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.5s ease;
+    border-radius: 25px;
+}
+ 
+.tab:hover img{
+    opacity: 0.6;
+}
+ 
+.tab:hover{
+    width: 80%;
+}
+.front {
+    position: absolute;
+    top: 190px;
+    color: white;
+    font-family: built tilting;
+    z-index: 2;
+    transition: opacity 0.5s ease;
+}
+
+.back {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    color: white;
+    font-size: 1rem;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 2;
+    transition: opacity 0.5s ease;
+}
+.back h2{
+    font-size: 30px;
+    font-family: built tilting;
+}
+.back p{
+    font-family: open_sans;
+    font-size: 20px;
+}
+
+.tab:hover .front {
+    opacity: 0;
+}
+
+.tab:hover .back {
+    opacity: 1; 
+    pointer-events: auto;
+}
+
+.how-it-works {
+    text-align: center;
+    color: var(--white);
+    background-color: #292430;
+    padding-top: 35px;
+    height: 500px;
+    padding-bottom: 50px;
+}
+  
+.how-it-works h2 {
+    font-family: built tilting;
+    font-size: 50px;
+    margin-bottom: 50px;
+    color: var(--dark_purple);
+}
+  
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    justify-items: center;
+}
+  
+.step {
+    box-shadow: 0 0 12px rgba(129, 86, 180, 0.15);
+    background: var(--bg_color);
+    padding: 30px 20px;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    max-width: 300px;
+}
+  
+.step:hover {
+    background: var(--dark_purple);
+}
+  
+.step i {
+    font-size: 40px;
+    color: var(--green);
+    margin-bottom: 15px;
+}
+  
+.step h3 {
+    font-family: built tilting;
+    margin-bottom: 10px;
+    color: var(--green);
+}
+  
+.step p {
+    font-family: open_sans;
+}
+
+
+.cta-banner {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.65)),
+        url(cta_banner_img.jpg);
+    color: var(--white);
+    text-align: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    height: 400px;
+    padding-top: 30px;
+}
+
+.cta-banner h2{
+    padding-top: 80px;
+    font-size: 33px;
+    font-family: built tilting;
+}
+
+.cta-banner p{
+    font-size: 20px;
+    font-family: open_sans;
+}
+
+.cta-button {
+    font-family: open_sans;
+    margin-top: 20px;
+    padding: 15px 40px;
+    background: var(--dark_purple);
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.cta-button:hover {
+    background: var(--purple);
+}
+
+#faqs {
+    color: var(--white);
+    padding: 60px 20px;
+    background: linear-gradient(180deg, #1e1e2f 0%, #151524 100%);
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+#faqs h1 {
+    font-family: "built tilting", sans-serif;
+    color: var(--dark_purple);
+    text-align: center;
+    font-size: 48px;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+}
+
+.faq-item {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 20px 25px;
+    border-left: 4px solid var(--purple);
+    border-radius: 10px;
+    margin-top: 30px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.faq-item:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    transform: scale(1.01);
+}
+
+#faqs h3 {
+    color: var(--purple);
+    font-family: "open_sans", sans-serif;
+    font-size: 20px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#faqs p {
+    font-family: "open_sans", sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--white);
+}
