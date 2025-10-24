@@ -1,0 +1,18 @@
+# Node / Functions
+node_modules/
+dist/
+bin/
+obj/
+npm-debug.log*
+funcignore
+**/.funcignore
+
+# Local dev settings
+local.settings.json
+AzLocal/
+azurite/
+*.swp
+
+# OS cruft
+.DS_Store
+Thumbs.db
