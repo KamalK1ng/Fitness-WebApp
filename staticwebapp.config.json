@@ -1,24 +1,27 @@
 {
-    "routes": [
-      { "route": "/api/*", "allowedRoles": ["anonymous"] },
-  
-      { "route": "/About", "rewrite": "/About.html" },
-      { "route": "/Testimonials", "rewrite": "/Testimonials.html" },
-      { "route": "/nutrition", "rewrite": "/nutrition.html" },
-      { "route": "/personal_t", "rewrite": "/personal_t.html" },
-      { "route": "/", "rewrite": "/index.html" }
-    ],
-    "navigationFallback": {
-      "rewrite": "/index.html",
-      "exclude": ["/api/*"]
-    },
-    "mimeTypes": {
-      ".woff2": "font/woff2",
-      ".ttf": "font/ttf",
-      ".otf": "font/otf"
-    },
-    "globalHeaders": {
-      "content-security-policy": "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; font-src 'self';"
-    }
+  "routes": [
+    { "route": "/api/*", "allowedRoles": ["anonymous"] },
+
+    { "route": "/About", "rewrite": "/About.html" },
+    { "route": "/Testimonials", "rewrite": "/Testimonials.html" },
+    { "route": "/nutrition", "rewrite": "/nutrition.html" },
+    { "route": "/personal_t", "rewrite": "/personal_t.html" },
+    { "route": "/", "rewrite": "/index.html" }
+  ],
+  "navigationFallback": {
+    "rewrite": "/index.html",
+    "exclude": ["/api/*"]
+  },
+  "mimeTypes": {
+    ".woff2": "font/woff2",
+    ".ttf": "font/ttf",
+    ".otf": "font/otf"
+  },
+  "globalHeaders": {
+    "content-security-policy": "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; font-src 'self';"
+  },
+
+  "platform": {
+    "apiRuntime": "node:20"     
   }
-  
+}
