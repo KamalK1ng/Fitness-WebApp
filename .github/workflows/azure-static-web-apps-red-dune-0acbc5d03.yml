@@ -15,22 +15,21 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           submodules: true
           lfs: false
       - name: Build And Deploy
         uses: Azure/static-web-apps-deploy@v1
         with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_XXXX }}  # <-- leave your secret as-is
-          app_location: "/"          # your HTML/CSS are in repo root
-          api_location: "api"        # your Azure Functions folder
-          output_location: ""        # nothing to build for static HTML
-          skip_app_build: true       # avoids Oryx trying to run a frontend build
-          api_build_command: ""      # let Oryx handle Functions build
-          # Optional but safe if you want to be explicit:
-          # api_runtime: "node:18"
-          ###### End of Repository/Build Configurations ######
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}   # 🔧 use ONE consistent secret
+          action: "upload"                                                                  # 🔧 REQUIRED to avoid "deployment_action was not provided"
+          app_location: "/"                                                                 # your HTML/CSS are in repo root
+          api_location: "api"                                                               # your Azure Functions folder (remove if you don't have one)
+          output_location: ""                                                               # nothing to build for static HTML
+          skip_app_build: true                                                              # avoids Oryx trying a frontend build
+          api_build_command: ""                                                             # let Oryx handle Functions build
+          repo_token: ${{ secrets.GITHUB_TOKEN }}                                           # optional but nice for PR comments
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
@@ -41,6 +40,5 @@ jobs:
         id: closepullrequest
         uses: Azure/static-web-apps-deploy@v1
         with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_RED_DUNE_0ACBC5D03 }}
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}   # 🔧 same secret as above
           action: "close"
-
