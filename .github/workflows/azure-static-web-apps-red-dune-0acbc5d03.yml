@@ -37,10 +37,10 @@ jobs:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}   # use ONE consistent secret
           action: "upload"                                                                  # REQUIRED
           app_location: "/"                                                                 # repo root
-          # api_location: "api"                                                               # keep ONLY if repo has /api with host.json
+          api_location: "api"                                                               # keep ONLY if repo has /api with host.json
           output_location: ""                                                               # no build artifacts for plain static
           skip_app_build: true                                                              # skip frontend build (static)
-          # api_build_command: ""                                                             # let Oryx handle Functions build if present
+          api_build_command: ""                                                             # let Oryx handle Functions build if present
           repo_token: ${{ secrets.GITHUB_TOKEN }}                                           # enables PR comments
 
   close_pull_request_job:
@@ -54,4 +54,5 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}   # same secret
           action: "close"
+
 
