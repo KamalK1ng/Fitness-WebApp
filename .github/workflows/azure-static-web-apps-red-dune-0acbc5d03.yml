@@ -1,6 +1,7 @@
 name: Azure Static Web Apps CI/CD
 
 on:
+  workflow_dispatch:                # ✅ allow manual runs from the Actions tab
   push:
     branches:
       - main
@@ -19,17 +20,28 @@ jobs:
         with:
           submodules: true
           lfs: false
+
+      # ✅ quick sanity: confirm SWA token is present (value stays masked)
+      - name: Check token exists
+        run: |
+          if [ -z "${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}" ]; then
+            echo "❌ Missing AZURE_STATIC_WEB_APPS_API_TOKEN"; exit 1
+          else
+            echo "✅ Token is configured"
+          fi
+
+      # 🚀 Build & Deploy
       - name: Build And Deploy
         uses: Azure/static-web-apps-deploy@v1
         with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}   # 🔧 use ONE consistent secret
-          action: "upload"                                                                  # 🔧 REQUIRED to avoid "deployment_action was not provided"
-          app_location: "/"                                                                 # your HTML/CSS are in repo root
-          api_location: "api"                                                               # your Azure Functions folder (remove if you don't have one)
-          output_location: ""                                                               # nothing to build for static HTML
-          skip_app_build: true                                                              # avoids Oryx trying a frontend build
-          api_build_command: ""                                                             # let Oryx handle Functions build
-          repo_token: ${{ secrets.GITHUB_TOKEN }}                                           # optional but nice for PR comments
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}   # use ONE consistent secret
+          action: "upload"                                                                  # REQUIRED
+          app_location: "/"                                                                 # repo root
+          api_location: "api"                                                               # keep ONLY if repo has /api with host.json
+          output_location: ""                                                               # no build artifacts for plain static
+          skip_app_build: true                                                              # skip frontend build (static)
+          api_build_command: ""                                                             # let Oryx handle Functions build if present
+          repo_token: ${{ secrets.GITHUB_TOKEN }}                                           # enables PR comments
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
@@ -40,5 +52,5 @@ jobs:
         id: closepullrequest
         uses: Azure/static-web-apps-deploy@v1
         with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}   # 🔧 same secret as above
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}   # same secret
           action: "close"
