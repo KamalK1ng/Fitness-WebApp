@@ -8,7 +8,8 @@
     <script src="https://kit.fontawesome.com/79f13ae6ed.js" crossorigin="anonymous"></script>
     <link rel="icon" href="images/kings_logo_black.png" type="image/icon type">
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
-    <title>Coach King PT</title>
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js" defer></script>
+        <title>Coach King PT</title>
     <div id="metric">Loading...</div>
     <div id="metrics"></div>
     
@@ -32,7 +33,6 @@
         </ul>
     </nav>
 
-    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
     <br>
     <br>
     <br>
@@ -135,34 +135,49 @@
     <!-- see results -->
     <div class="results">
         <h1>Client Transformations</h1>
+      
         <div class="gallery js-flickity"
-            data-flickity-options='{ "wrapAround": true }'>
-            <div class="gallery-cell">
-                <img src="images/b&a1.jpeg" alt="">
-                <h2>Sammy</h2>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicee elit. Modi, unde. 
-                    Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+             data-flickity='{ "wrapAround": true, "imagesLoaded": true, "pageDots": false }'>
+      
+          <div class="gallery-cell">
+            <img src="images/b&a1.jpeg" alt="Sammy before and after">
+            <div class="copy">
+              <h2>Sammy</h2>
+              <p>Lorem ipsum dolor sit amet consectetur, adipisicee elit. Modi, unde. 
+                 Lorem ipsum dolor sit amet consectetur adipisicing.</p>
             </div>
-            <div class="gallery-cell">
-                <img src="images/b&a2.jpeg" alt="">
-                <h2>Georgia</h2>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi, unde. 
-                    Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+          </div>
+      
+          <div class="gallery-cell">
+            <img src="images/b&a2.jpeg" alt="Georgia before and after">
+            <div class="copy">
+              <h2>Georgia</h2>
+              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi, unde. 
+                 Lorem ipsum dolor sit amet consectetur adipisicing.</p>
             </div>
-            <div class="gallery-cell">
-                <img src="images/b&a3.jpeg" alt="">
-                <h2>Emily</h2>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi, unde. 
-                    Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+          </div>
+      
+          <div class="gallery-cell">
+            <img src="images/b&a3.jpeg" alt="Emily before and after">
+            <div class="copy">
+              <h2>Emily</h2>
+              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi, unde. 
+                 Lorem ipsum dolor sit amet consectetur adipisicing.</p>
             </div>
-            <div class="gallery-cell">
-                <img src="images/b&a4.jpeg" alt="">
-                <h2>Eliza</h2>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi, unde. 
-                    Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+          </div>
+      
+          <div class="gallery-cell">
+            <img src="images/b&a4.jpeg" alt="Eliza before and after">
+            <div class="copy">
+              <h2>Eliza</h2>
+              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi, unde. 
+                 Lorem ipsum dolor sit amet consectetur adipisicing.</p>
             </div>
+          </div>
+      
         </div>
-    </div>
+      </div>
+      
 
     <!-- what customers say about us -->
     <div class="review_section">

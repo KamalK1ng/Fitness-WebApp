@@ -31,7 +31,7 @@ nav .dropdownmenu {
     height: 500px;
     margin-top: -20px;
     background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)),
-                url('nutrition_cover.jpg');
+                url('images/nutrition_cover.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -150,7 +150,7 @@ nav .dropdownmenu {
 #d_background{
     width: 100%;
     height: 550px;
-    background-image: url('nutrition\ 1of2\ img.jpg'), url('nutrition\ 2of2\ img.jpg');
+    background-image: url('images/nutrition_1of2_img.jpg'), url('images/nutrition_2of2_img.jpg');
     background-position: top left, bottom right;
     background-repeat: no-repeat;
     background-size: 50% 100%;

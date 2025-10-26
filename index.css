@@ -149,7 +149,7 @@ ul li ul:focus {
 .cover{
   margin-top: -72px;
   margin-left: -65px;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('gym-cover.jpg');
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/gym_cover.jpg');
   width: 104.85%;
   height: 700px;
   background-size: cover;
@@ -287,7 +287,6 @@ button:hover{
 .coach_king_services{
   margin-top: -55px;
   padding-top: 20px;
-  padding-bottom: 110px;
   background-color: var(--dark_purple);
 }
 .what_to_offer{
@@ -498,67 +497,73 @@ form .submit-btn:hover {
 
 
 /* Results program */
+/* Results program */
 .results{
-  margin-top: -100px;
-  background: var(--bg_color);
-  padding-top: 50px;
-  padding-left: 10px;
-  height: 550px;
-  width: 99.25%;
-  color: var(--white);
-  margin-bottom: 100px;
+  margin-top:-100px;
+  background:var(--bg_color);
+  padding:50px 10px 0;
+  height:550px; /* optional; remove if you prefer auto height */
+  width:99.25%;
+  color:var(--white);
+  margin-bottom:100px;
 }
 .results h1{
   font-family: built tilting;
-  text-align: center;
-  margin-bottom: 50px;
-  color: var(--purple);
-  font-size: 50px;
+  text-align:center;
+  margin-bottom:50px;
+  color:var(--purple);
+  font-size:50px;
 }
+.results *{ box-sizing:border-box; }
 
-.results *{
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
+/* Flickity gallery */
+.gallery{ background:var(--bg_color); }
+.gallery .flickity-page-dots{ display:none !important; }
 
-.gallery {
-  background: var(--bg_color);
-}
-.gallery .flickity-page-dots{
-  display: none !important;
-}
-.gallery-cell {
-  width: 66%;
-  height: 300px;
-  margin-right: 10px;
-  border-radius: 10px;
-  background: var(--purple);
+.gallery-cell{
+  width:66%;
+  height:300px;
+  margin-right:10px;
+  border-radius:10px;
+  background:var(--purple);
+
+  /* New: lay out image + text cleanly */
+  display:flex;
+  overflow:hidden; /* keep rounded corners clean */
 }
 .gallery-cell img{
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-  width: 60%;
-  height: 100%;
-  float: left;
-  margin-right: 2%;
+  width:60%;
+  height:100%;
+  object-fit:cover;              /* prevents image distortion */
+  flex:0 0 60%;
 }
-.gallery-cell p{
-  color: var(--white);
-  margin-right: 0.5%;
-  font-family: open_sans;
+.gallery-cell .copy{
+  flex:1 1 40%;
+  padding:18px 20px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
 }
 .gallery-cell h2{
-  color: var(--white);
-  margin-right: 1%;
+  color:var(--white);
   font-family: open_sans;
+  margin:0 0 8px;
 }
-.gallery-cell:before {
-  display: block;
-  text-align: center;
-  line-height: 200px;
-  font-size: 80px;
-  color: white;
+.gallery-cell p{
+  color:var(--white);
+  font-family: open_sans;
+  margin:0;
 }
+
+/* (optional) shrink nicely on small screens */
+@media (max-width: 900px){
+  .gallery-cell{ width:85%; height:260px; }
+}
+@media (max-width: 600px){
+  .gallery-cell{ width:92%; height:240px; }
+  .gallery-cell img{ flex-basis:55%; }
+}
+
 
 /* reviews */
 .review_section{

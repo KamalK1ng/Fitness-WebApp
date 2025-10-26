@@ -27,7 +27,7 @@
 
 .intro-text {
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.65)),
-        url('testimonial cover.jpg');
+        url('images/testimonial_cover.jpg');
     height: 500px;
     width: 98.9vw;
     background-size: cover;
