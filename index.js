@@ -138,19 +138,3 @@ async function updateMetric() {
   }
 }
 
-// Refresh every 5 seconds
-setInterval(updateMetric, 5000);
-updateMetric(); // initial load
-
-(async ()=>{
-  try {
-    const r = await fetch('/api/metrics?minutes=10');
-    if(!r.ok) return;
-    const d = await r.json();
-    const el = document.getElementById('metrics');
-    if(el) el.textContent =
-      `Active (last ${d.windowMinutes}m): ${d.activeVisitors} • Total: ${d.totalVisitors}`;
-  } catch (err) {
-    console.warn('Metrics fetch failed', err);
-  }
-})();
