@@ -54,104 +54,126 @@
     font-size: 18px;
 }
 
+
+/* carousel */
 .who-its-for{
-    background-color: #292430;
-    height: 500px;
-    padding-top: 20px;
-    padding-bottom: 100px;
+    background-color:#292430;
+    padding:20px 0 100px;
 }
 
 .who-its-for h1{
     font-family: built tilting;
-    text-align: center;
-    color: var(--dark_purple);
-    margin-bottom: 30px;
-    font-size: 45px;
+    text-align:center;
+    color:var(--dark_purple);
+    margin-bottom:30px;
+    font-size:45px;
 }
-
-.tabs{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  
+/* flex track */
+.tabs {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    align-content: space-around;
     gap: 20px;
+    align-items: stretch;
     overflow: hidden;
-    height: 400px;
+    height: 500px;
+    padding-left: 1vw;
+    /* make it full-width */
     width: 98vw;
+    margin-left: calc(50% - 50vw);   /* pulls it out of the page padding for true edge-to-edge */
 }
-
-.tab{
+  
+.tab {
     position: relative;
-    width: 20%;
-    height: inherit;
-    padding: 20px;
-    background: rgb(150,150,150);
+    flex: 1 1 0;
+    min-width: 0;
+    height: 100%;
     cursor: pointer;
-    transition: width .5s ease;
     border-radius: 25px;
+    overflow: hidden;
+    background: #3a3a3a;
+    transition: flex-grow .35s ease, flex-basis .35s ease;
+    will-change: flex-basis, flex-grow;
 }
- 
-.tab img{
+  
+.tab:hover {
+    flex: 4 1 0;
+}
+  
+/* image */
+.tab img {
     position: absolute;
-    top: 0;
-    left: 0;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: all 0.5s ease;
-    border-radius: 25px;
+    transition: opacity .25s ease;
 }
- 
-.tab:hover img{
+  
+.tab:hover img {
     opacity: 0.6;
 }
- 
-.tab:hover{
-    width: 80%;
-}
+  
+/* FRONT text dead center again */
 .front {
     position: absolute;
-    top: 190px;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: white;
     font-family: built tilting;
+    font-size: 1.6rem;
+    text-align: center;
     z-index: 2;
-    transition: opacity 0.5s ease;
+    transition: opacity .25s ease;
 }
-
+  
 .back {
     position: absolute;
-    top: 20px;
-    left: 20px;
-    right: 20px;
-    bottom: 20px;
+    inset: 20px;
     color: white;
     font-size: 1rem;
     opacity: 0;
     pointer-events: none;
     z-index: 2;
-    transition: opacity 0.5s ease;
+    transition: opacity .25s ease;
 }
-.back h2{
+  
+.back h2 {
     font-size: 30px;
     font-family: built tilting;
+    margin-top: 0;
 }
-.back p{
+  
+.back p {
     font-family: open_sans;
     font-size: 20px;
 }
-
+  
 .tab:hover .front {
     opacity: 0;
 }
-
+  
 .tab:hover .back {
-    opacity: 1; 
+    opacity: 1;
     pointer-events: auto;
 }
+  
+  
+/* small screens: allow wrap instead of heavy expansion */
+@media (max-width: 900px){
+    .tabs{ flex-wrap:wrap; height:auto; }
+    .tab{ flex:1 1 calc(50% - 20px); min-height:280px; }
+    .tab:hover{ flex:1 1 calc(50% - 20px); } /* no aggressive expand on mobile */
+}
+@media (max-width: 560px){
+    .tab{ flex:1 1 100%; min-height:260px; }
+}
+  
 
+
+
+/* how it works */
 .how-it-works {
     text-align: center;
     color: var(--white);
