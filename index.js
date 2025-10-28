@@ -89,42 +89,36 @@ document.addEventListener("DOMContentLoaded", function () {
 	revealOnScroll(); // Trigger on load too
 });
 
-function toggleAccordion(clickedHeader) {
-    const accordion = clickedHeader.closest('.accordion-mistake');
-    const allAccordions = document.querySelectorAll('.accordion-mistake');
 
-    allAccordions.forEach(item => {
-        if (item !== accordion) {
-            item.classList.remove('open');
-            const body = item.querySelector('.accordion-body');
-            body.style.maxHeight = null;
-        }
-    });
 
-    accordion.classList.toggle('open');
-    const body = accordion.querySelector('.accordion-body');
-    
-    if (accordion.classList.contains('open')) {
-        body.style.maxHeight = body.scrollHeight + 'px';
-    } else {
-        body.style.maxHeight = null;
-    }
+// function toggleAccordion(clickedHeader) {
+//     const clickedAccordion = clickedHeader.closest('.accordion-mistake');
+//     const isOpen = clickedAccordion.classList.contains('open');
+
+//     // Close all accordions
+//     document.querySelectorAll('.accordion-mistake').forEach((accordion) => {
+//         accordion.classList.remove('open');
+//     });
+
+//     // Toggle clicked one (re-open if it was closed)
+//     if (!isOpen) {
+//         clickedAccordion.classList.add('open');
+//     }
+// }
+
+function toggleAccordion(clickedHeader){
+  const clicked = clickedHeader.closest('.accordion-mistake');
+  const wasOpen = clicked.classList.contains('open');
+
+  document.querySelectorAll('.accordion-mistake').forEach(a => a.classList.remove('open'));
+  if (!wasOpen) clicked.classList.add('open');
 }
 
-function toggleAccordion(clickedHeader) {
-    const clickedAccordion = clickedHeader.closest('.accordion-mistake');
-    const isOpen = clickedAccordion.classList.contains('open');
-
-    // Close all accordions
-    document.querySelectorAll('.accordion-mistake').forEach((accordion) => {
-        accordion.classList.remove('open');
-    });
-
-    // Toggle clicked one (re-open if it was closed)
-    if (!isOpen) {
-        clickedAccordion.classList.add('open');
-    }
-}
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.accordion-header').forEach(h => {
+    h.addEventListener('click', () => toggleAccordion(h));
+  });
+});
 
 // Function to fetch updated data
 async function updateMetric() {
@@ -138,3 +132,4 @@ async function updateMetric() {
   }
 }
 
+  
