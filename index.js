@@ -132,4 +132,25 @@ async function updateMetric() {
   }
 }
 
+
+// touch feature for phones
+document.addEventListener('DOMContentLoaded', () => {
+  const isTouch = window.matchMedia('(hover: none)').matches;
+  if (!isTouch) return;                      // desktop keeps hover behavior
+
+  const tabs = document.querySelectorAll('.who-its-for .tabs .tab');
+  if (!tabs.length) return;
+
+  // open the first by default on touch
+  tabs[0].classList.add('active');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+    }, { passive: true });
+  });
+});
+
+
   
