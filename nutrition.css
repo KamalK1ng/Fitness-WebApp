@@ -99,13 +99,15 @@ nav .dropdownmenu {
     color: var(--white);
     margin: 0;
 }
-  .scroll-indicator {
+.scroll-indicator svg{
     position: absolute;
     bottom: 20px;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-100%);
     color: var(--white);
-    font-size: 24px;
+    height: 45px;
+    width: 45px;
+    font-weight: "bold";
     animation: bounce 2s infinite;
 }
   
