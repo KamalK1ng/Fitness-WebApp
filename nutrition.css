@@ -214,8 +214,9 @@ nav .dropdownmenu {
     transition: transform 0.3s ease;
 }
   
-.wheel-item i {
-    font-size: 36px;
+.wheel-item .icon {
+    height: 45px;
+    width: 45px;
     color: var(--green);
     margin-bottom: 20px;
 }

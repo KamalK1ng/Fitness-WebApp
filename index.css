@@ -754,10 +754,11 @@ h4{
   font-size: 33px;
   text-transform: capitalize;
 }
-#ficon{
+.ficon{
   height: 35px;
   width: 35px;
-  fill: rgb(212, 212, 212);
+  vertical-align: -6px;
+  color: currentColor;
   transition: all 0.3s ease;
 }
 #person-img {
