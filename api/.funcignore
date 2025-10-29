@@ -1,10 +1,12 @@
 *.js.map
 *.ts
 .git*
-.vscode
+.vscode/
 local.settings.json
-test
+test/
 getting_started.md
+
+# Large/irrelevant deps for publish
 node_modules/@types/
 node_modules/azure-functions-core-tools/
 node_modules/typescript/
