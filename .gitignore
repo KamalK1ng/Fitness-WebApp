@@ -1,20 +1,23 @@
 # Node / Functions
 node_modules/
 dist/
+.tmp/
+.nyc_output/
+coverage/
+npm-debug.log*
+yarn-error.log*
+package-lock.json
+
+# Azure Functions local/dev
+local.settings.json
+.funcignore
 bin/
 obj/
-npm-debug.log*
-funcignore
-**/.funcignore
 
-# Local dev settings
-local.settings.json
-AzLocal/
-azurite/
-*.swp
-
-# OS cruft
+# IDE/OS
+.vscode/
 .DS_Store
-Thumbs.db
 
-powershell.ps1
+# Build output for docs/site if any
+out/
+build/

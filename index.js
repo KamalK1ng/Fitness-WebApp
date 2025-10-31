@@ -153,4 +153,49 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-  
+
+
+
+
+// api features
+
+(() => {
+  const sessionId = crypto.randomUUID();
+  const path = location.pathname || "/";
+  let start = performance.now();
+
+  const send = (url, data) => {
+    const blob = new Blob([JSON.stringify(data)], { type: "application/json" });
+    if (navigator.sendBeacon) {
+      navigator.sendBeacon(url, blob);
+    } else {
+      // Fallback
+      fetch(url, { method: "POST", headers: {"Content-Type":"application/json"}, body: JSON.stringify(data) });
+    }
+  };
+
+  const startEvent = () => {
+    start = performance.now();
+    send("/api/track", { sessionId, path, event: "start", timestamp: Date.now() });
+  };
+
+  const stopEvent = () => {
+    const durationMs = Math.max(0, Math.round(performance.now() - start));
+    send("/api/track", { sessionId, path, event: "stop", durationMs, timestamp: Date.now() });
+  };
+
+  // Fire on load/visible
+  if (document.visibilityState === "visible") startEvent();
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "hidden") {
+      stopEvent();
+    } else if (document.visibilityState === "visible") {
+      startEvent();
+    }
+  });
+
+  // Safety net on unload
+  window.addEventListener("pagehide", stopEvent);
+})();
+
+
