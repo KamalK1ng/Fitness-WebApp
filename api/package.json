@@ -1,21 +1,19 @@
 {
-  "name": "",
+  "name": "fitness-webapp-api",
   "version": "1.0.0",
-  "description": "",
-  "main": "src/functions/*.js",
+  "private": true,
+  "main": "functionApp.ts",
   "scripts": {
-    "start": "func start",
-    "test": "echo \"No tests yet...\""
+    "build": "tsc -p .",
+    "start": "func start --typescript"
   },
   "dependencies": {
-    "@azure/communication-email": "^1.1.0",
-    "@azure/data-tables": "^13.3.1",
-    "@azure/functions": "^4.0.0"
+    "@azure/functions": "^4.4.0",
+    "@azure/data-tables": "^13.2.2",
+    "@azure/communication-email": "^1.0.0"
   },
   "devDependencies": {
-    "azure-functions-core-tools": "^4.x"
-  },
-  "engines": { 
-    "node": ">=20.0.0" 
+    "typescript": "^5.6.3",
+    "@types/node": "^22.5.1"
   }
 }
