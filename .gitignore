@@ -1,23 +1,29 @@
 # Node / Functions
 node_modules/
 dist/
-.tmp/
-.nyc_output/
-coverage/
 npm-debug.log*
 yarn-error.log*
-package-lock.json
 
 # Azure Functions local/dev
 local.settings.json
-.funcignore
 bin/
 obj/
+.oryx*
+.tmp/
 
-# IDE/OS
-.vscode/
+# Site build outputs (if you ever add build steps)
+site/build/
+site/dist/
+
+# Original image sources
+_source_images/
+*.avif
+
+# Dev tools/scripts not needed in deploy
+tools/
+*.log
+
+# System / IDE
 .DS_Store
-
-# Build output for docs/site if any
-out/
-build/
+Thumbs.db
+.vscode/

@@ -1,0 +1,24 @@
+{
+  "name": "fitness-business",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KamalK1ng/Fitness-WebApp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KamalK1ng/Fitness-WebApp/issues"
+  },
+  "homepage": "https://github.com/KamalK1ng/Fitness-WebApp#readme",
+  "dependencies": {
+    "fast-glob": "^3.3.3",
+    "sharp": "^0.34.4"
+  }
+}
