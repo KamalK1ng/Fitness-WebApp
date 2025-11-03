@@ -1,16 +1,25 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "module": "commonjs",        
+    "module": "commonjs",
     "moduleResolution": "node",
-    "outDir": "./dist",
+    "lib": ["ES2020"],
     "rootDir": "./",
+    "outDir": "./dist",
+
     "strict": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "types": ["node"],
-    "lib": ["ES2020"]
+
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "inlineSources": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmitOnError": true,
+    "incremental": true,
+
+    "types": ["node", "@azure/functions"]
   },
   "include": ["**/*.ts"],
-  "exclude": ["node_modules", "dist"]
+  "exclude": ["node_modules", "dist", "**/*.test.ts"]
 }
