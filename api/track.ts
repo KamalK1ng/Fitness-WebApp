@@ -1,11 +1,17 @@
-export {}; // ← marks the file as a module; isolates its scope
+export {}; // keep file scoped
 
+// keep CommonJS requires (matches your setup)
 const { app } = require("@azure/functions");
 const { TableClient } = require("@azure/data-tables");
 
 function getTableClient() {
-  const conn = process.env.AzureWebJobsStorage;
-  if (!conn) throw new Error("AzureWebJobsStorage not set.");
+  // Prefer dedicated app setting in prod; fall back to Functions storage (local Azurite)
+  const conn =
+    process.env.APP_TABLE_CONN ||
+    process.env.AzureWebJobsStorage ||
+    "";
+
+  if (!conn) return null; // best-effort: allow missing storage
   const tableName = process.env.TABLE_NAME || "SiteVisits";
   return TableClient.fromConnectionString(conn, tableName);
 }
@@ -23,6 +29,11 @@ interface VisitEntity {
 
 async function trackHandler(req: any, ctx: any): Promise<any> {
   try {
+    // Quick healthcheck (handy for browser GET)
+    if (req.method === "GET") {
+      return { status: 200, jsonBody: { ok: true } };
+    }
+
     const body = (await req.json().catch(() => ({}))) as {
       sessionId?: string;
       path?: string;
@@ -31,13 +42,14 @@ async function trackHandler(req: any, ctx: any): Promise<any> {
       timestamp?: number;
     };
 
-    const { sessionId, path, event } = body;
-    if (!sessionId || !path || !event || !["start", "stop"].includes(event)) {
+    const sessionId = body.sessionId ?? "anon";
+    const path = body.path ?? "/";
+    const event = (body.event ?? "start") as VisitEvent;
+
+    // still guard allowed events, but defaulted above
+    if (!["start", "stop"].includes(event)) {
       return { status: 400, jsonBody: { error: "Invalid body." } };
     }
-
-    const table = getTableClient();
-    try { await table.createTable(); } catch { /* already exists */ }
 
     const ts = Number.isFinite(body.timestamp) ? Number(body.timestamp) : Date.now();
     const pk = process.env.TABLE_PARTITION || "visits";
@@ -55,8 +67,23 @@ async function trackHandler(req: any, ctx: any): Promise<any> {
         : {})
     };
 
-    // Relax typing for SDK generic expectations
-    await table.createEntity(entity as any);
+    // Best-effort persist: try to write, but don't fail the request if storage has an issue
+    try {
+      const table = getTableClient();
+      if (table) {
+        try {
+          await table.createTable(); // idempotent (409 = exists)
+        } catch (e: any) {
+          if (e?.statusCode !== 409) throw e;
+        }
+        await table.createEntity(entity as any);
+      } else {
+        ctx.log("track: storage not configured; skipping persist");
+      }
+    } catch (e: any) {
+      ctx.log("track: persist failed:", e?.message || e);
+      // swallow: we still return 202 so the site never breaks
+    }
 
     return { status: 202, jsonBody: { ok: true } };
   } catch (err: any) {
@@ -66,7 +93,7 @@ async function trackHandler(req: any, ctx: any): Promise<any> {
 }
 
 app.http("track", {
-  methods: ["POST"],
+  methods: ["GET", "POST"], // POST for real events; GET for quick checks
   authLevel: "anonymous",
   route: "track",
   handler: trackHandler
