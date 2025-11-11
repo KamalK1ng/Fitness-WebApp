@@ -199,3 +199,53 @@ document.addEventListener('DOMContentLoaded', () => {
 })();
 
 
+
+
+// existing site logic ...
+// ---- tracking + metrics (bottom of index.js) ----
+(function track() {
+  const SID_KEY='fyf_sid';
+  const sid = sessionStorage.getItem(SID_KEY) || (crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2));
+  sessionStorage.setItem(SID_KEY, sid);
+  const t0 = Date.now();
+
+  async function send(ev) {
+    try {
+      navigator.sendBeacon && ev==='stop'
+        ? navigator.sendBeacon('/api/track', new Blob([JSON.stringify({ sessionId:sid, path:location.pathname, event:ev, durationMs: Date.now()-t0 })], {type:'application/json'}))
+        : fetch('/api/track', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ sessionId:sid, path:location.pathname, event:ev, durationMs: Date.now()-t0 })});
+    } catch {}
+  }
+  send('start');
+  addEventListener('visibilitychange', () => { if (document.visibilityState==='hidden') send('stop'); });
+  addEventListener('pagehide', () => send('stop'));
+})();
+
+(function badge() {
+  function ensure() {
+    let b = document.getElementById('metrics-badge');
+    if (!b) {
+      b = document.createElement('div');
+      b.id = 'metrics-badge';
+      b.style.cssText = 'position:fixed;top:8px;right:8px;z-index:9999;font:14px system-ui,Segoe UI,Roboto,Arial;background:rgba(0,0,0,.75);color:#fff;padding:8px 10px;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.3);pointer-events:none';
+      b.innerHTML = '<div id="m1">Active: —</div><div id="m2">Avg: —</div><div id="m3" style="opacity:.7">Loading…</div>';
+      document.body.appendChild(b);
+    }
+    return b;
+  }
+  async function tick() {
+    const b = ensure();
+    try {
+      const r = await fetch('/api/metrics?nocache=' + Date.now(), { cache: 'no-store' });
+      if (!r.ok) throw 0;
+      const m = await r.json();
+      b.querySelector('#m1').textContent = 'Active: ' + (m.activeNow ?? '—');
+      b.querySelector('#m2').textContent = 'Avg: ' + ((m.averageSeconds ?? 0).toFixed(1)) + 's';
+      b.querySelector('#m3').textContent = 'Updated ' + new Date().toLocaleTimeString();
+    } catch {
+      b.querySelector('#m3').textContent = 'Offline ' + new Date().toLocaleTimeString();
+    }
+  }
+  tick();
+  setInterval(tick, 15000);
+})();

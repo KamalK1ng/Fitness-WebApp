@@ -1,0 +1,12 @@
+{
+  "configurations": {
+    "dev": {
+      "appLocation": "site",
+      "apiLocation": "api",
+      "outputLocation": "",
+      "run": "none",
+      "apiDevServerUrl": "http://localhost:7071",
+      "port": 4281
+    }
+  }
+}

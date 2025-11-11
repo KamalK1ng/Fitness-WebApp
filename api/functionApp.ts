@@ -1,5 +1,4 @@
 // When running from dist, these will be .js
-require("./dist/contact.js");
 require("./dist/track.js");
 require("./dist/metrics.js");
 
