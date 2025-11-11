@@ -33,13 +33,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 window.addEventListener('load', function() {
+  setTimeout(function() {
+    const button = document.querySelector('.learn_more');
+    if (!button) return;                 // ← guard so we don't error on pages without it
+    button.style.display = 'block';
     setTimeout(function() {
-        const button = document.querySelector('.learn_more');
-        button.style.display = 'block'; // First, make it visible
-        setTimeout(function() {
-            button.classList.add('visible');
-        }, 10); // Small delay to allow the browser to register the display change
-    }, 2000); // Delay in milliseconds (3 seconds)
+      button.classList.add('visible');
+    }, 10);
+  }, 2000);
 });
 
 
@@ -53,9 +54,8 @@ document.addEventListener("DOMContentLoaded", () => {
           setTimeout(() => {
             const text = document.querySelector('.animate-text');
             text.classList.add('in-view');
-          }, 500); // 0.5s delay for image first
+          }, 500);
         } else if (entry.target.classList.contains('animate-text')) {
-          // fallback in case image loads late
           setTimeout(() => {
             entry.target.classList.add('in-view');
           }, 500);
@@ -90,20 +90,15 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-
 // function toggleAccordion(clickedHeader) {
-//     const clickedAccordion = clickedHeader.closest('.accordion-mistake');
-//     const isOpen = clickedAccordion.classList.contains('open');
-
-//     // Close all accordions
-//     document.querySelectorAll('.accordion-mistake').forEach((accordion) => {
-//         accordion.classList.remove('open');
-//     });
-
-//     // Toggle clicked one (re-open if it was closed)
-//     if (!isOpen) {
-//         clickedAccordion.classList.add('open');
-//     }
+//   const clickedAccordion = clickedHeader.closest('.accordion-mistake');
+//   const isOpen = clickedAccordion.classList.contains('open');
+//   document.querySelectorAll('.accordion-mistake').forEach((accordion) => {
+//     accordion.classList.remove('open');
+//   });
+//   if (!isOpen) {
+//     clickedAccordion.classList.add('open');
+//   }
 // }
 
 function toggleAccordion(clickedHeader){
@@ -153,99 +148,139 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+/* =========================
+   API base (works for file://, local server, and live SWA)
+   ========================= */
+// ===== API base (local vs live) =====
+const IS_FILE   = !location.origin.startsWith('http');
+const IS_LOCAL  = location.origin.startsWith('http://127.0.0.1:5500') ||
+                  location.origin.startsWith('http://localhost:5500');
+
+const API_ORIGIN = IS_FILE ? 'http://localhost:7071'         // opened via file://
+                  : IS_LOCAL ? 'http://localhost:7071'       // served with http-server
+                  : location.origin;                         // live SWA
+
+const API_BASE = `${API_ORIGIN}/api`;
 
 
 
-
-// api features
-
-(() => {
-  const sessionId = crypto.randomUUID();
-  const path = location.pathname || "/";
-  let start = performance.now();
-
-  const send = (url, data) => {
-    const blob = new Blob([JSON.stringify(data)], { type: "application/json" });
-    if (navigator.sendBeacon) {
-      navigator.sendBeacon(url, blob);
-    } else {
-      // Fallback
-      fetch(url, { method: "POST", headers: {"Content-Type":"application/json"}, body: JSON.stringify(data) });
+/* =========================
+   Telemetry (ONE source of truth)
+   ========================= */
+   (function initTelemetry() {
+    if (window.__fyfTelemetryInit) return;
+    window.__fyfTelemetryInit = true;
+  
+    const SID_KEY = 'fyf_sid';
+    const sid =
+      sessionStorage.getItem(SID_KEY) ||
+      (crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2));
+    sessionStorage.setItem(SID_KEY, sid);
+  
+    const pagePath = location.pathname || '/';
+    let t0 = Date.now();
+    let hideAt = 0;
+    let lastStopSentAt = 0;
+    const MIN_HIDE_MS = 5000; // only count a stop if hidden for ≥ 5s
+  
+    function send(ev) {
+      const now = Date.now();
+      const payload = {
+        sessionId: sid,
+        path: pagePath,
+        event: ev, // "start" | "stop"
+        durationMs: Math.max(0, now - t0),
+        timestamp: now
+      };
+  
+      try {
+        const body = JSON.stringify(payload);
+        if (ev === 'stop' && navigator.sendBeacon) {
+          const blob = new Blob([body], { type: 'application/json' });
+          navigator.sendBeacon(`${API_BASE}/track`, blob);
+        } else {
+          fetch(`${API_BASE}/track`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body
+          });
+        }
+        if (ev === 'start') t0 = now;
+        if (ev === 'stop')  lastStopSentAt = now;
+      } catch {}
     }
-  };
-
-  const startEvent = () => {
-    start = performance.now();
-    send("/api/track", { sessionId, path, event: "start", timestamp: Date.now() });
-  };
-
-  const stopEvent = () => {
-    const durationMs = Math.max(0, Math.round(performance.now() - start));
-    send("/api/track", { sessionId, path, event: "stop", durationMs, timestamp: Date.now() });
-  };
-
-  // Fire on load/visible
-  if (document.visibilityState === "visible") startEvent();
-  document.addEventListener("visibilitychange", () => {
-    if (document.visibilityState === "hidden") {
-      stopEvent();
-    } else if (document.visibilityState === "visible") {
-      startEvent();
+  
+    // start once when first visible
+    if (document.visibilityState === 'visible') send('start');
+  
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'hidden') {
+        hideAt = Date.now();
+        // send stop only if we remain hidden long enough
+        setTimeout(() => {
+          if (document.visibilityState === 'hidden' && Date.now() - hideAt >= MIN_HIDE_MS) {
+            // avoid duplicate stops in rare cases
+            if (Date.now() - lastStopSentAt >= 1000) send('stop');
+          }
+        }, MIN_HIDE_MS);
+      } else if (document.visibilityState === 'visible') {
+        // if we were truly away long enough, start a new session on return
+        if (hideAt && Date.now() - hideAt >= MIN_HIDE_MS) {
+          send('start');
+        }
+        hideAt = 0;
+      }
+    });
+  
+    // safety net on page unload
+    addEventListener('pagehide', () => send('stop'));
+  })();
+  
+/* =========================
+   Tiny top-right metrics badge
+   ========================= */
+   (function initMetricsBadge() {
+    if (window.__fyfBadgeInit) return;
+    window.__fyfBadgeInit = true;
+  
+    const b = document.createElement('div');
+    b.id = 'metrics-badge';
+    b.style.cssText =
+      'position:fixed;top:91.5%;right:4px;z-index:9999;font:14px system-ui,Segoe UI,Roboto,Arial;' +
+      'background:rgba(0,0,0,.75);color:#fff;padding:8px 10px;border-radius:10px;' +
+      'box-shadow:0 2px 10px rgba(0,0,0,.3);pointer-events:none';
+    b.innerHTML =
+      '<div id="m1">Active: —</div><div id="m2">Avg: —</div>' +
+      '<div id="m3" style="opacity:.7">Loading…</div>';
+  
+    // ensure body exists
+    window.addEventListener('load', () => document.body.appendChild(b));
+  
+    async function tick() {
+      const m1 = document.querySelector('#m1');
+      const m2 = document.querySelector('#m2');
+      const m3 = document.querySelector('#m3');
+      if (!m1 || !m2 || !m3) return; // nothing to update yet
+  
+      try {
+        const r = await fetch(`${API_BASE}/metrics?nocache=${Date.now()}`, { cache: 'no-store' });
+        if (!r.ok) throw 0;
+        const m = await r.json();
+        const avg = m.averageSeconds ?? 0;
+        const formatted = avg >= 60 ? `${(avg / 60).toFixed(2)} min` : `${avg.toFixed(2)} s`;
+  
+        m1.textContent = 'Active: ' + (m.activeNow ?? '—');
+        m2.textContent = 'Avg: ' + formatted;
+        m3.textContent = 'Updated ' + new Date().toLocaleTimeString();
+      } catch {
+        m3.textContent = 'Offline ' + new Date().toLocaleTimeString();
+      }
     }
-  });
-
-  // Safety net on unload
-  window.addEventListener("pagehide", stopEvent);
-})();
-
-
-
-
-// existing site logic ...
-// ---- tracking + metrics (bottom of index.js) ----
-(function track() {
-  const SID_KEY='fyf_sid';
-  const sid = sessionStorage.getItem(SID_KEY) || (crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2));
-  sessionStorage.setItem(SID_KEY, sid);
-  const t0 = Date.now();
-
-  async function send(ev) {
-    try {
-      navigator.sendBeacon && ev==='stop'
-        ? navigator.sendBeacon('/api/track', new Blob([JSON.stringify({ sessionId:sid, path:location.pathname, event:ev, durationMs: Date.now()-t0 })], {type:'application/json'}))
-        : fetch('/api/track', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ sessionId:sid, path:location.pathname, event:ev, durationMs: Date.now()-t0 })});
-    } catch {}
-  }
-  send('start');
-  addEventListener('visibilitychange', () => { if (document.visibilityState==='hidden') send('stop'); });
-  addEventListener('pagehide', () => send('stop'));
-})();
-
-(function badge() {
-  function ensure() {
-    let b = document.getElementById('metrics-badge');
-    if (!b) {
-      b = document.createElement('div');
-      b.id = 'metrics-badge';
-      b.style.cssText = 'position:fixed;top:8px;right:8px;z-index:9999;font:14px system-ui,Segoe UI,Roboto,Arial;background:rgba(0,0,0,.75);color:#fff;padding:8px 10px;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.3);pointer-events:none';
-      b.innerHTML = '<div id="m1">Active: —</div><div id="m2">Avg: —</div><div id="m3" style="opacity:.7">Loading…</div>';
-      document.body.appendChild(b);
-    }
-    return b;
-  }
-  async function tick() {
-    const b = ensure();
-    try {
-      const r = await fetch('/api/metrics?nocache=' + Date.now(), { cache: 'no-store' });
-      if (!r.ok) throw 0;
-      const m = await r.json();
-      b.querySelector('#m1').textContent = 'Active: ' + (m.activeNow ?? '—');
-      b.querySelector('#m2').textContent = 'Avg: ' + ((m.averageSeconds ?? 0).toFixed(1)) + 's';
-      b.querySelector('#m3').textContent = 'Updated ' + new Date().toLocaleTimeString();
-    } catch {
-      b.querySelector('#m3').textContent = 'Offline ' + new Date().toLocaleTimeString();
-    }
-  }
-  tick();
-  setInterval(tick, 15000);
-})();
+  
+    tick();
+    setInterval(tick, 15000);
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') tick();
+    });
+  })();
+  
