@@ -1,6 +1,5 @@
 export {}; // keep file scoped
 
-// keep CommonJS requires (matches your setup)
 const { app } = require("@azure/functions");
 const { TableClient } = require("@azure/data-tables");
 
@@ -29,11 +28,30 @@ interface VisitEntity {
 
 async function trackHandler(req: any, ctx: any): Promise<any> {
   try {
-    // Quick healthcheck (handy for browser GET)
-    if (req.method === "GET") {
-      return { status: 200, jsonBody: { ok: true } };
+    // --- CORS preflight (useful during local dev) ---
+    if (req.method === "OPTIONS") {
+      const origin = req.headers?.get?.("Origin") || "*";
+      return {
+        status: 204,
+        headers: {
+          "Access-Control-Allow-Origin": origin,
+          "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+          "Access-Control-Allow-Headers": "content-type",
+          "Access-Control-Max-Age": "600"
+        }
+      };
     }
 
+    // Quick healthcheck (handy for browser GET)
+    if (req.method === "GET") {
+      return {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+        jsonBody: { ok: true }
+      };
+    }
+
+    // Parse body (POST)
     const body = (await req.json().catch(() => ({}))) as {
       sessionId?: string;
       path?: string;
@@ -42,13 +60,16 @@ async function trackHandler(req: any, ctx: any): Promise<any> {
       timestamp?: number;
     };
 
-    const sessionId = body.sessionId ?? "anon";
-    const path = body.path ?? "/";
-    const event = (body.event ?? "start") as VisitEvent;
+    const sessionId = (body.sessionId ?? "anon").toString();
+    const path = (body.path ?? "/").toString();
+    const event = ((body.event ?? "start") as VisitEvent);
 
-    // still guard allowed events, but defaulted above
     if (!["start", "stop"].includes(event)) {
-      return { status: 400, jsonBody: { error: "Invalid body." } };
+      return {
+        status: 400,
+        headers: { "Content-Type": "application/json" },
+        jsonBody: { error: "Invalid body." }
+      };
     }
 
     const ts = Number.isFinite(body.timestamp) ? Number(body.timestamp) : Date.now();
@@ -72,7 +93,7 @@ async function trackHandler(req: any, ctx: any): Promise<any> {
       const table = getTableClient();
       if (table) {
         try {
-          await table.createTable(); // idempotent (409 = exists)
+          await table.createTable(); // idempotent; 409 = already exists
         } catch (e: any) {
           if (e?.statusCode !== 409) throw e;
         }
@@ -82,18 +103,26 @@ async function trackHandler(req: any, ctx: any): Promise<any> {
       }
     } catch (e: any) {
       ctx.log("track: persist failed:", e?.message || e);
-      // swallow: we still return 202 so the site never breaks
+      // swallow: still return 202 so site UX never breaks
     }
 
-    return { status: 202, jsonBody: { ok: true } };
+    return {
+      status: 202,
+      headers: { "Content-Type": "application/json" },
+      jsonBody: { ok: true }
+    };
   } catch (err: any) {
     ctx?.error?.("Track error:", err?.message || err);
-    return { status: 500, jsonBody: { error: "Failed to track." } };
+    return {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+      jsonBody: { error: "Failed to track." }
+    };
   }
 }
 
 app.http("track", {
-  methods: ["GET", "POST"], // POST for real events; GET for quick checks
+  methods: ["OPTIONS", "GET", "POST"], // POST for events; GET for health; OPTIONS for CORS preflight
   authLevel: "anonymous",
   route: "track",
   handler: trackHandler
