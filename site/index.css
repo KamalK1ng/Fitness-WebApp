@@ -497,7 +497,6 @@ form .submit-btn:hover {
 
 
 /* Results program */
-/* Results program */
 .results{
   margin-top:-100px;
   background:var(--bg_color);
@@ -567,7 +566,7 @@ form .submit-btn:hover {
 
 /* reviews */
 .review_section{
-  background-image: url(review_bgimg.webp);
+  background-image: url(images/review_bgimg.webp);
   height: 750px;
   background-attachment: fixed;
   background-position: center;
@@ -625,6 +624,7 @@ form .submit-btn:hover {
 }
 .people p{
   text-align: center;
+  margin-top: -17px;
 }
 .fa-star{
   color: white;
@@ -641,6 +641,7 @@ form .submit-btn:hover {
   text-align: center;
   padding-bottom: 10px;
 }
+
 /* join the community */
 .JTC{
   background-color: var(--footer_bg);
@@ -807,6 +808,14 @@ h4{
   #undertitle {
     left: 550px;
     top: 380px;
+  }
+
+  /* transformations */
+  .gallery-cell{
+    height:375px;
+  }
+  .results{
+    height:600px;
   }
 }
 
