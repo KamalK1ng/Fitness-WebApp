@@ -1,4 +1,5 @@
-import { app, HttpRequest, HttpResponseInit, InvocationContext } from "@azure/functions";
+// api/contact.ts
+import { HttpRequest, HttpResponseInit, InvocationContext } from "@azure/functions";
 import { TableClient } from "@azure/data-tables";
 import { randomUUID } from "crypto";
 
@@ -18,16 +19,16 @@ function getString(v: unknown): string {
 
 export async function contactHandler(req: HttpRequest, ctx: InvocationContext): Promise<HttpResponseInit> {
   try {
-    // Safely parse JSON body
+    // Parse body safely
     let body = {} as ContactPayload;
     const ct = req.headers.get("content-type") || "";
+
     if (ct.includes("application/json")) {
       body = (await req.json()) as ContactPayload;
     } else if (ct.includes("application/x-www-form-urlencoded")) {
       const text = await req.text();
       body = Object.fromEntries(new URLSearchParams(text)) as unknown as ContactPayload;
     } else {
-      // best-effort
       try {
         body = (await req.json()) as ContactPayload;
       } catch {
@@ -56,10 +57,9 @@ export async function contactHandler(req: HttpRequest, ctx: InvocationContext): 
       return { status: 500, jsonBody: { error: "Storage not configured" } };
     }
 
-    // Use TableClient directly
     const client = TableClient.fromConnectionString(conn, tableName);
 
-    // Create the table if it doesn't exist (ignore 409)
+    // create table if needed (ignore 409)
     try {
       await client.createTable();
     } catch (e: any) {
@@ -86,9 +86,3 @@ export async function contactHandler(req: HttpRequest, ctx: InvocationContext): 
     return { status: 500, jsonBody: { error: "Server error" } };
   }
 }
-
-app.http("contact", {
-  methods: ["POST"],
-  authLevel: "anonymous",
-  handler: contactHandler
-});

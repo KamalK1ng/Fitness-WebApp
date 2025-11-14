@@ -246,7 +246,7 @@ const API_BASE = `${API_ORIGIN}/api`;
     const b = document.createElement('div');
     b.id = 'metrics-badge';
     b.style.cssText =
-      'position:fixed;top:91.5%;right:4px;z-index:9999;font:14px system-ui,Segoe UI,Roboto,Arial;' +
+      'position:fixed;top:90%;right:4px;z-index:9999;font:14px system-ui,Segoe UI,Roboto,Arial;' +
       'background:rgba(0,0,0,.75);color:#fff;padding:8px 10px;border-radius:10px;' +
       'box-shadow:0 2px 10px rgba(0,0,0,.3);pointer-events:none';
     b.innerHTML =
