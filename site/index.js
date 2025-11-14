@@ -283,4 +283,40 @@ const API_BASE = `${API_ORIGIN}/api`;
       if (document.visibilityState === 'visible') tick();
     });
   })();
+
+  
+// form tingz
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("contactForm");
+    const status = document.getElementById("contactStatus");
+  
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      status.textContent = "Submitting...";
+  
+      const data = {
+        First_name: document.getElementById("fname").value,
+        Last_name:  document.getElementById("lname").value,
+        Phone:      document.getElementById("phone").value,
+        Location:   document.getElementById("location").value,
+        consent:    form.querySelector('input[type="checkbox"]').checked,
+        trap:       document.getElementById("website").value  // honeypot
+      };      
+  
+      try {
+        const res = await fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        });
+        const body = await res.json();
+        if (!res.ok) throw new Error(body.error || "Failed");
+  
+        status.textContent = "Thanks! I’ll be in touch shortly.";
+        form.reset();
+      } catch (err) {
+        status.textContent = "Something went wrong. Please try again.";
+      }
+    });
+  });
   
