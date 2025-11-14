@@ -1,5 +1,4 @@
-// api/contact.ts
-import { HttpRequest, HttpResponseInit, InvocationContext } from "@azure/functions";
+import { app, HttpRequest, HttpResponseInit, InvocationContext } from "@azure/functions";
 import { TableClient } from "@azure/data-tables";
 import { randomUUID } from "crypto";
 
@@ -17,9 +16,9 @@ function getString(v: unknown): string {
   return (typeof v === "string" ? v : "").trim();
 }
 
-export async function contactHandler(req: HttpRequest, ctx: InvocationContext): Promise<HttpResponseInit> {
+async function contactHandler(req: HttpRequest, ctx: InvocationContext): Promise<HttpResponseInit> {
   try {
-    // Parse body safely
+    // ---- Parse body safely ----
     let body = {} as ContactPayload;
     const ct = req.headers.get("content-type") || "";
 
@@ -29,6 +28,7 @@ export async function contactHandler(req: HttpRequest, ctx: InvocationContext): 
       const text = await req.text();
       body = Object.fromEntries(new URLSearchParams(text)) as unknown as ContactPayload;
     } else {
+      // best effort
       try {
         body = (await req.json()) as ContactPayload;
       } catch {
@@ -59,7 +59,7 @@ export async function contactHandler(req: HttpRequest, ctx: InvocationContext): 
 
     const client = TableClient.fromConnectionString(conn, tableName);
 
-    // create table if needed (ignore 409)
+    // Create the table if it doesn't exist (ignore 409)
     try {
       await client.createTable();
     } catch (e: any) {
@@ -86,3 +86,10 @@ export async function contactHandler(req: HttpRequest, ctx: InvocationContext): 
     return { status: 500, jsonBody: { error: "Server error" } };
   }
 }
+
+// 🔑 This is the crucial bit – it actually registers the HTTP trigger.
+app.http("contact", {
+  methods: ["POST"],
+  authLevel: "anonymous",
+  handler: contactHandler
+});
