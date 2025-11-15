@@ -884,7 +884,7 @@ h4{
 /* Standard laptops */
 @media (min-width: 1024px) and (max-width: 1439px) {
   .img-accordion {
-    height: 50vh;
+    height: 60vh;
     gap: 4px;
   }
 
@@ -894,7 +894,7 @@ h4{
   .coach_king_services{
     margin-top: -55px;
     padding-top: 20px;
-    height: 700px;
+    height: 650px;
     background-color: var(--dark_purple);
   }
 
