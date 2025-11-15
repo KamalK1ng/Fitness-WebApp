@@ -357,3 +357,105 @@ body {
   background-color: var(--black);
   color: var(--white);
 }
+
+
+
+@media (min-width: 1440px) {
+  .values-section h2{
+    font-size: 60px;
+  }
+  .float-img1 {
+    position: absolute;
+    height: 420px;
+    width: 400px;
+    border-radius: 12px;
+    margin: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    top: 930px;
+    left: 320px;
+  }
+  .float-img2 {
+    position: absolute;
+    height: 420px;
+    width: 400px;
+    border-radius: 12px;
+    margin: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    top: 1070px;
+    left: 1160px;
+  }
+  .float-img3 {
+    position: absolute;
+    height: 420px;
+    width: 400px;
+    border-radius: 12px;
+    margin: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    top: 1210px;
+    left: 770px;
+  }
+  /* -------------------------------------------- */
+
+  .value-block1{
+    position: absolute;
+    left: 370px;
+    top: 1360px;
+    width: 350px;
+  }
+  
+  .value-block2{
+    position: absolute;
+    left: 830px;
+    top: 1080px;
+    width: 330px;
+  }
+  
+  .value-block3{
+    position: absolute;
+    left: 1210px;
+    top: 940px;
+    width: 330px;
+  }
+  
+  .value-block4{
+    position: absolute;
+    left: 1255px;
+    top: 1510px;
+    width: 330px;
+  }
+
+  .personality-section h2{
+    font-size: 60px;
+  }
+  .trait-block {
+    max-width: 1400px;
+  }
+  .trait-block img {
+    width: 300px;
+    height: 250px;
+    border-radius: 12px;
+    flex-shrink: 0;
+  }
+
+  /* ------------------------------------------------- */
+
+  .about-text{
+    background-color: var(--dark_purple);
+    width: 47%;
+    position: absolute;
+    left: 650px;
+    border-radius: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .about-img img {
+    width: 475px;
+    height: 625px;
+  }
+  .about-container {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: auto;
+    height: 650px;
+  }
+}

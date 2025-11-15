@@ -490,3 +490,51 @@ nav .dropdownmenu {
         transform: translateX(-78.1%);
     }
 }
+
+
+/* PC responsiveness */
+@media (min-width: 1440px) {
+    /* intro */
+    .cover-content h1 {
+        color: var(--white);
+        font-size: 60px;
+        margin-bottom: 20px;
+        font-family: built tilting;
+    }
+      
+    .overlay .cover-content p {
+        font-size: 25px;
+        font-weight: 600;
+        font-family: 'open_sans', sans-serif;
+    }
+    /* ------------------------------------------------ */
+
+    .filler h1{
+        font-size: 55px;
+    }
+
+    #text h1{
+        font-size: 35px;
+    }
+    #text p{
+        font-size: 18px;
+    }
+
+    /* whats in the plan section */
+    .nutrition-wheel-section h2{
+        font-size: 60px;
+    }
+
+    /* -------------------------------------------------- */
+
+    /* mistake list */
+    .mistake-list h2{
+        font-size: 55px;
+    }
+
+    /* -------------------------------------------------- */
+
+    .meal-carousel-section h2{
+        font-size: 55px;
+    }
+}
