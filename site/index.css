@@ -398,7 +398,7 @@ button:hover{
 /* Forms */
 .form_section{
   margin-top: -30px;
-  padding-top: 150px;
+  padding-top: 130px;
   padding-bottom: 150px;
   background-image: url(images/gym_cover.webp);
   height: 350px;
@@ -904,6 +904,9 @@ h4{
     padding:30px 10px 0;
     width:99.25%;
     margin-bottom:100px;
+  }
+  .form_section{
+    padding-bottom: 170px;
   }
 }
 /* ---------------- */
