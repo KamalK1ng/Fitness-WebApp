@@ -538,3 +538,110 @@ nav .dropdownmenu {
         font-size: 55px;
     }
 }
+
+
+
+@media (max-width: 700px) {
+    /* our mission */
+    .filler{
+        height: 550px;
+    }
+    .filler p{
+        font-size: 16px;
+    }
+
+
+    /* dual image */
+    #d_background{
+        width: 100%;
+        height: 500px;
+        background-image: url('images/nutrition_1of2_img.webp'), url('images/nutrition_2of2_img.webp');
+        background-position: top left, bottom right;
+        background-size: 50% 100%;
+    }
+    #d_background #text{
+        width: 50%;
+        height: 300px;
+        top: 20%;
+    }
+    #d_background h1{
+        font-size: 26px;
+        margin-top: 50px;
+        margin-bottom: 30px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    #d_background p{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    /* ---------------------------- */
+    /* nutritional wheel */
+    /* ---------------------------- */
+    .nutrition-wheel-section {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+      
+    .nutrition-wheel-section h2 {
+        font-size: 42px;
+        font-family: 'built tilting';
+        color: var(--dark_purple);
+        margin-bottom: 60px;
+    }
+      
+    .wheel-grid {
+        gap: 15px;
+        margin-bottom: 30px;
+    }
+      
+    .wheel-item {
+        padding: 20px 15px;
+        width: 100px;
+        height: 120px;
+        border-radius: 20px;
+    }
+      
+    .wheel-item .icon {
+        height: 30px;
+        width: 30px;
+        color: var(--green);
+        margin-bottom: 15px;
+    }
+      
+    .wheel-item p {
+        font-family: open_sans;
+        font-size: 14px;
+        color: var(--white);
+        margin: 0;
+    }
+      
+    .bottom-row {
+        margin-top: 25px; /* slight visual stack overlap */
+        gap: 30px;
+    }
+
+
+
+    /* common mistakes */
+    .mistake-list{
+        margin-top: 60px;
+    }
+    .mistake-grid {
+        display: inline-block;
+        /* grid-template-columns: repeat(3, 1fr); */
+    }
+    .accordion-mistake{
+        margin-top: 25px;
+    }
+
+    /* meal cards */
+    .meal-card img {
+        width: 60vw;
+        border-radius: 12px;
+        height: 220px;
+        object-fit: cover;
+        margin-bottom: 15px;
+    }
+}
