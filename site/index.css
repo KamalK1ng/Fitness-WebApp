@@ -92,7 +92,7 @@ ul li ul:focus {
   content: "";
   position: absolute;
   display: block;
-  width: 50px;
+  width: 30%;
   height: 2px;
   bottom: 20%;
   left: 20%;
@@ -966,6 +966,8 @@ h4{
   }
 }
 
+
+
 /* -------------------- */
 /* Phone responsiveness */
 /* -------------------- */
@@ -974,7 +976,7 @@ h4{
   li #a {
     padding: 3px;
     transition: all 0.3s ease;
-    font-size: 24px;
+    font-size: 22px;
     font-family: open_sans;
     color: var(--white);
   }
@@ -984,9 +986,21 @@ h4{
     font-family: open_sans;
     color: var(--white);
     transition: all 0.3s ease;
+    margin-left: -13%;
   }
-
-
+  #Services a::before{
+    width: 35%;
+  }
+  #underservices a::before{
+    width: 35%;
+  }
+  #underservices2 a::before{
+    width: 37%;
+  }
+  #Testimonials a::before{
+    width: 40%;
+    margin-left: -10px;
+  }
 
   /* cover heading */
   .king{
@@ -1075,12 +1089,6 @@ h4{
   }
 
 
-  /* footer */
-  .container{
-    margin-left: -10px;
-    margin-bottom: -150px;
-  }
-
 
   /* join the community */
   .JTC{
@@ -1097,6 +1105,7 @@ h4{
     margin-left: -10px;
     background-color: var(--footer_bg);
     box-sizing: border-box;
+    margin-bottom: -150px;
   }
   #ul{
     list-style: none;
@@ -1118,8 +1127,11 @@ h4{
     font-size: 40px;
   }
   .column{
-    width: 30%;
+    width: 32%;
     margin-left: 10px;
+  }
+  .column2{
+    margin-left: 25%;
   }
   .column h4{
     font-family: built tilting;
@@ -1127,43 +1139,10 @@ h4{
   .enter_mail{
     position: relative;
     top: 20px;
+    /* taking it out cause too annoying */
+    display: none
   }
-  .enter_mail i{
-    font-size: 21px;
-  }
-  .enter_mail .ficon{
-    font-family: 19px;
-  }
-  #subscribe{
-    color: #fff;
-    font-size: 16px;
-    font-family: open_sans;
-  }
-  input[type=email]{
-    padding: 4px 25px;
-    width: 105px;
-    border-right: none; 
-    border-top: none; 
-    border-left: none;
-    border-bottom: 1px solid grey;
-    background-color: var(--footer_bg);
-    color: white;
-  }
-  input[type=email]::placeholder{
-    color: rgb(219, 219, 219);
-  }
-  input[type=submit]{
-    margin-top: 10px;
-    margin-left: 25px;
-    padding: 8px 20px;
-    background-color: var(--purple);
-    border: none;
-    cursor: pointer;
-    color: white;
-    font-size: 14px;
-    border-radius: 2px;
-    font-family: open_sans;
-  }
+  
   .top_row{
     color: var(--purple);
     display: flex;
@@ -1202,7 +1181,7 @@ h4{
     margin-top:-100px;
     background:var(--bg_color);
     padding:50px 10px 0;
-    height:550px; /* optional; remove if you prefer auto height */
+    height:550px;
     width:98%;
     color:var(--white);
     margin-bottom:100px;
