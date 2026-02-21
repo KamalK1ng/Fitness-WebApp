@@ -65,7 +65,7 @@
     font-family: built tilting;
     text-align:center;
     color:var(--dark_purple);
-    margin-bottom:30px;
+    margin-bottom:50px;
     font-size:45px;
 }
   
@@ -75,7 +75,7 @@
     gap: 20px;
     align-items: stretch;
     overflow: hidden;
-    height: 500px;
+    height: 400px;
     padding-left: 1vw;
     /* make it full-width */
     width: 98vw;
@@ -212,7 +212,7 @@
 .steps-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 30px;
+    gap: 20px;
     justify-items: center;
 }
   
@@ -333,4 +333,108 @@
     font-size: 16px;
     line-height: 1.6;
     color: var(--white);
+}
+
+@media (max-width: 800px){
+    .bespoke_c{
+        padding-top: 50px;
+        color: var(--white);
+        height: 250px;
+        margin-bottom: 50px;
+    }
+    .bespoke_c h1{
+        color: var(--purple);
+        font-family: built tilting;
+        font-size: 40px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+
+
+
+    /* ----------------------------------------------------- */
+    /* carousel */
+    .who-its-for{
+        background-color:#292430;
+        padding:20px 0 100px;
+    }
+
+    .who-its-for h1{
+        font-family: built tilting;
+        text-align:center;
+        color:var(--dark_purple);
+        margin-bottom:50px;
+        font-size:45px;
+    }
+    
+    /* flex track */
+    .tabs {
+        display: flex;
+        gap: 20px;
+        align-items: stretch;
+        overflow: hidden;
+        height: 400px;
+        padding-left: 1vw;
+        /* make it full-width */
+        width: 98vw;
+        margin-left: calc(50% - 50vw);   /* pulls it out of the page padding for true edge-to-edge */
+    }
+    
+    .tab {
+        position: relative;
+        flex: 1 1 0;
+        min-width: 0;
+        height: 100%;
+        cursor: pointer;
+        border-radius: 25px;
+        overflow: hidden;
+        background: #3a3a3a;
+        transition: flex-grow .25s ease, flex-basis .25s ease;
+        will-change: flex-basis, flex-grow;
+        contain: layout paint; 
+        object-fit: cover; 
+        width:100%; 
+        height:100%;
+    }
+    .tab h2{
+        font-size: 16px;
+    }
+
+    .tab-2 h2{
+        font-size: 20px;
+    }
+
+    .tab .back h2{
+        font-size: 26px;
+    }
+    
+    .tab:hover {
+        flex: 4 1 0;
+    }
+
+    .tab img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: opacity .25s ease;
+    }
+    
+    .tab:hover img {
+        opacity: 0.6;
+    }
+
+
+    /* -------------------------------------------------- */
+    /* how it works */
+    .how-it-works {
+        text-align: center;
+        color: var(--white);
+        background-color: #292430;
+        padding-top: 35px;
+        height: 800px;
+        padding-bottom: 50px;
+    }
 }
