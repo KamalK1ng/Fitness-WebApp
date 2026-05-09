@@ -31,7 +31,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
 }); 
 
+// For FAQ question Animation
+document.addEventListener("DOMContentLoaded", () => {
+  const faqQuestions = document.querySelectorAll(".faq-question");
 
+  faqQuestions.forEach((question) => {
+    question.addEventListener("click", () => {
+      const faqItem = question.closest(".faq-item");
+
+      document.querySelectorAll(".faq-item").forEach((item) => {
+        if (item !== faqItem) {
+          item.classList.remove("active");
+        }
+      });
+
+      faqItem.classList.toggle("active");
+    });
+  });
+});
+
+
+// -------------------------------------------------------------------------------
 window.addEventListener('load', function() {
   setTimeout(function() {
     const button = document.querySelector('.learn_more');

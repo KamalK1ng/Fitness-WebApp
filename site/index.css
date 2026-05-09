@@ -18,6 +18,10 @@
 @font-face { font-family: la oriental; src: url('LaOriental.otf'); }
 @font-face { font-family: open_sans; src: url('OpenSans-CondBold.ttf'); } 
 
+html {
+  scroll-behavior: smooth;
+}
+
 body{
   background-color: var(--bg_color);
   /* background: url('dark\ wall.jpg'); */
