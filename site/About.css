@@ -301,6 +301,7 @@ body {
   flex-direction: row-reverse;
 }
 
+
 @media (max-width: 768px) {
   .trait-block {
     flex-direction: column !important;
@@ -351,6 +352,7 @@ body {
   font-weight: bold;
   text-decoration: none;
   transition: background-color 0.3s ease;
+  font-family: open_sans;
 }
 
 .cta-button:hover {
