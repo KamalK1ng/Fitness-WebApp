@@ -51,6 +51,17 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+// testimonials click card
+const testimonialCards = document.querySelectorAll('.testimonial-card');
+
+testimonialCards.forEach((card) => {
+    card.addEventListener('click', () => {
+        card.classList.toggle('is-flipped');
+    });
+});
+
+
+
 // -------------------------------------------------------------------------------
 window.addEventListener('load', function() {
   setTimeout(function() {
