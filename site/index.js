@@ -61,7 +61,6 @@ testimonialCards.forEach((card) => {
 });
 
 
-
 // -------------------------------------------------------------------------------
 window.addEventListener('load', function() {
   setTimeout(function() {
