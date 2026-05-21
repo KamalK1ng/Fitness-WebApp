@@ -165,7 +165,7 @@ ul li ul:focus {
 
 .cover {
   position: relative;
-  width: 104.5%;
+  width: 104.75%;
   min-height: 670px;
   margin-top: -72px;
   margin-left: -65px;
@@ -1117,13 +1117,14 @@ ul li ul:focus {
 .results {
   position: relative;
   margin-top: -100px;
-  padding: 100px 0 110px;
   min-height: 750px;
+  padding-top: 50px;
+  padding-bottom: 100px;
   width: 100%;
   background:
     linear-gradient(135deg, #050505 0%, #111019 52%, #08080c 100%);
   color: var(--white);
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 
 .results-inner {
@@ -1426,6 +1427,10 @@ ul li ul:focus {
   transform: translateY(-30px);
 }
 
+.reviewer-3{
+  transform: translateY(22px);
+}
+
 .quote-mark {
   position: absolute;
   top: 12px;
@@ -1486,13 +1491,14 @@ ul li ul:focus {
 
 .fa-star,
 .fa-star-half {
-  color: rgba(255, 255, 255, 0.32);
+  width: 20px;
+  height: 20px;
   margin-right: 3px;
 }
 
 .checked,
 .fa-star-half {
-  color: orange;
+  fill: orange;
 }
 
 .people p {
@@ -1505,7 +1511,7 @@ ul li ul:focus {
   line-height: 1.65;
   text-align: left;
 }
-
+/* ============================================================ */
 
 
 /* join the community */
@@ -2140,9 +2146,8 @@ ul li ul:focus {
 
   .results{
     margin-top:-100px;
-    background:var(--bg_color);
-    padding:30px 10px 0;
-    width:99.25%;
+    background:var(--footer_bg);
+    width:100%;
     margin-bottom:100px;
   }
   .form_section{
@@ -2233,6 +2238,8 @@ ul li ul:focus {
     right: 3%;
     margin-right: 0;
   }
+
+
 }
 
 
