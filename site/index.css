@@ -251,6 +251,7 @@ ul li ul:focus {
   inset: 0;
   z-index: 3;
   pointer-events: none;
+  flex-shrink: 0;
 }
 
 .hero-nuggets p {
@@ -265,6 +266,7 @@ ul li ul:focus {
   font-size: 14px;
   font-weight: 850;
   line-height: 1;
+  white-space: nowrap;
   letter-spacing: 0.2px;
   backdrop-filter: blur(10px);
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.32);
@@ -495,7 +497,7 @@ ul li ul:focus {
 
 .why-section {
   position: relative;
-  padding: 90px 0 100px;
+  padding: 190px 0 100px;
   background:
     linear-gradient(135deg, #08080c 0%, #111019 55%, #050505 100%);
   overflow: hidden;
@@ -732,6 +734,9 @@ ul li ul:focus {
 /* ----------------------------------------------------------------------- */
 
 
+
+
+
 /* services */
 .coach_king_services {
   position: relative;
@@ -907,7 +912,7 @@ ul li ul:focus {
   position: relative;
   margin-top: -30px;
   padding: 105px 0 115px;
-  min-height: 520px;
+  min-height: 500px;
   background:
     linear-gradient(rgba(5, 5, 5, 0.78), rgba(5, 5, 5, 0.82)),
     url(images/gym_cover.webp);
@@ -1118,7 +1123,7 @@ ul li ul:focus {
   background:
     linear-gradient(135deg, #050505 0%, #111019 52%, #08080c 100%);
   color: var(--white);
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .results-inner {
@@ -2117,7 +2122,7 @@ ul li ul:focus {
 
 /* ---------------- */
 /* Standard laptops */
-@media (min-width: 1024px) and (max-width: 1439px) {
+@media (min-width: 1024px) and (max-width: 1444px) {
   .img-accordion {
     height: 60vh;
     gap: 4px;
@@ -2128,8 +2133,8 @@ ul li ul:focus {
   }
   .coach_king_services{
     margin-top: -55px;
-    padding-top: 20px;
-    height: 650px;
+    padding-top: 50px;
+    height: 600px;
     background-color: var(--dark_purple);
   }
 
@@ -2141,13 +2146,13 @@ ul li ul:focus {
     margin-bottom:100px;
   }
   .form_section{
-    padding-bottom: 170px;
+    padding-top: 10%;
+    padding-bottom: 6%;
   }
 
   .hero-nuggets p:nth-child(1) {
-    top: 205px;
-    left: -10%;
-    margin-left: 2%;
+    top: -5px;
+    left: 115%;
   }
 
   .hero-nuggets p:nth-child(2) {
@@ -2197,8 +2202,8 @@ ul li ul:focus {
   }
 
   .coach_king_services {
-    padding-top: 20px;
-    padding-bottom: 60px;
+    padding-top: 30px;
+    padding-bottom: 30px;
   }
 
   .trainer {
