@@ -165,17 +165,16 @@ ul li ul:focus {
 
 .cover {
   position: relative;
-  width: 104.75%;
+  width: 100%;
   min-height: 670px;
   margin-top: -72px;
-  margin-left: -65px;
   padding: 105px 0 0;
   background: linear-gradient(135deg, #08080c 0%, #171220 48%, #050505 100%);
   overflow: hidden;
 }
 
 .hero-inner {
-  width: 88%;
+  width: 100%;
   max-width: 1180px;
   min-height: 615px;
   margin: 0 auto;
@@ -2240,6 +2239,7 @@ ul li ul:focus {
   }
 
 
+
 }
 
 
@@ -2278,11 +2278,11 @@ ul li ul:focus {
     margin-left: -10px;
   }
 
-  /* cover heading */
-  .king{
-    font-size: 40px;
-    font-family: la oriental;
-    margin-left: -53%;
+
+
+  /* cover */
+  .cover{
+    width: 100%;
   }
 
   .hero-visual{
@@ -2290,15 +2290,13 @@ ul li ul:focus {
   }
 
 
-  .cover{
-    width: 106.5vw;
-  }
+
   body{
     background-color: var(--bg_color);
     background-size: 100%, 100%;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    margin-left: 3%;
+    /* margin-left: 3%; */
     width: 100%;
   }
 
