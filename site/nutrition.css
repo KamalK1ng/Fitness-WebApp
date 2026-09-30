@@ -230,7 +230,7 @@
     position: relative;
 }
 
-.manifesto-heading span {
+.manifesto-heading #ourmiss {
     display: inline-block;
     margin-bottom: 18px;
     padding: 9px 16px;
@@ -359,9 +359,8 @@
 
 .purple-card {
     background:
-        linear-gradient(145deg, rgba(129, 86, 180, 0.92), rgba(108, 70, 153, 0.92)),
-        radial-gradient(circle at top right, rgba(255, 255, 255, 0.28), transparent 35%);
-    color: var(--white);
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.32), transparent 38%),
+    linear-gradient(145deg, red, red)
 }
 
 .purple-card::before {
@@ -378,24 +377,24 @@
 .green-card {
     background:
         radial-gradient(circle at top right, rgba(255, 255, 255, 0.36), transparent 35%),
-        linear-gradient(145deg, var(--green), var(--b_green));
+        linear-gradient(145deg, var(--green), var(--green));
     color: var(--black);
 }
 
 .blue-card {
     background:
         radial-gradient(circle at top right, rgba(255, 255, 255, 0.32), transparent 38%),
-        linear-gradient(145deg, var(--blue), #004ea8);
-    color: var(--white);
+        linear-gradient(145deg, yellow, yellow);
+    color: var(--black);
 }
 
 .dark-card {
     grid-column: span 2;
     min-height: 145px;
     background:
-        linear-gradient(135deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.035)),
-        var(--fblack);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+        linear-gradient(135deg, rgba(230, 12, 12, 0.09), rgba(255, 255, 255, 0.035)),
+        blue;
+    border: 1px solid blue;
 }
 
 .dark-card::after {
