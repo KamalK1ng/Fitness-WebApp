@@ -65,22 +65,8 @@
     animation: coverTextRise 0.9s ease both;
 }
 
-/* background wordmark instead of the lame line */
-.n-cover-content::before {
-    content: "FUEL";
-    position: absolute;
-    top: -54px;
-    left: -10px;
-    z-index: -1;
-    font-family: built tilting;
-    font-size: clamp(95px, 13vw, 170px);
-    line-height: 1;
-    color: transparent;
-    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.08);
-    letter-spacing: 6px;
-    pointer-events: none;
-}
 
+/* background wordmark instead of the lame line */
 .n-cover-content h1 {
     color: var(--white);
     font-size: clamp(48px, 7vw, 84px);
@@ -227,31 +213,6 @@
         radial-gradient(circle at 88% 25%, rgba(129, 86, 180, 0.25), transparent 30%),
         linear-gradient(135deg, #07080b 0%, var(--fblack) 50%, #11151f 100%);
     overflow: hidden;
-}
-
-.nutrition-manifesto::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image:
-        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-    background-size: 42px 42px;
-    opacity: 0.35;
-    pointer-events: none;
-}
-
-.nutrition-manifesto::after {
-    content: "FUEL";
-    position: absolute;
-    right: -20px;
-    bottom: -35px;
-    color: transparent;
-    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.08);
-    font-family: built tilting;
-    font-size: clamp(120px, 18vw, 280px);
-    letter-spacing: 10px;
-    pointer-events: none;
 }
 
 .nutrition-manifesto-inner {
@@ -482,7 +443,7 @@
 
 
 
-
+/* wheel section */
 .nutrition-wheel-section {
     position: relative;
     width: 100%;
@@ -490,39 +451,10 @@
     padding-bottom: 105px;
     color: var(--white);
     background:
-        radial-gradient(circle at 18% 18%, rgba(129, 86, 180, 0.34), transparent 30%),
         radial-gradient(circle at 82% 65%, rgba(129, 86, 180, 0.18), transparent 28%),
         radial-gradient(circle at 50% 48%, rgba(57, 255, 20, 0.055), transparent 30%),
-        linear-gradient(135deg, #0b0d13 0%, var(--fblack) 45%, #181121 100%);
+        linear-gradient(135deg, #000000 0%, var(--fblack) 45%, #000000 100%);
     overflow: hidden;
-}
-
-.nutrition-wheel-section::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image:
-        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-    background-size: 44px 44px;
-    opacity: 0.22;
-    pointer-events: none;
-}
-
-.nutrition-wheel-section::after {
-    content: "NUTRITION";
-    position: absolute;
-    left: 50%;
-    bottom: -58px;
-    transform: translateX(-50%);
-    color: transparent;
-    -webkit-text-stroke: 1px rgba(129, 86, 180, 0.18);
-    text-stroke: 1px rgba(129, 86, 180, 0.18);
-    font-family: built tilting;
-    font-size: 210px;
-    letter-spacing: 10px;
-    pointer-events: none;
-    opacity: 0.8;
 }
 
 .nutrition-wheel-inner {
@@ -776,113 +708,195 @@
 
 
 
-
-
-
-
-
-
 /* Quote section */
 .quote-block {
-    margin-top: 100px;
-    padding: 70px 7%;
-    background-color: var(--bg_color);
+    position: relative;
+    margin-top: 0;
+    padding: 175px 7%;
+    background: #050505;
     color: var(--white);
+    font-family: open_sans;
+    overflow: hidden;
+}
+
+.quote-block::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    background-size: 44px 44px;
+    opacity: 0.26;
+    pointer-events: none;
+}
+
+.quote-block blockquote {
+    position: relative;
+    z-index: 2;
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0;
+    color: rgba(255, 255, 255, 0.86);
+    font-family: open_sans;
+    font-size: 22px;
+    line-height: 1.8;
     font-style: italic;
     text-align: center;
-    font-size: 22px;
-    font-family: open_sans;
 }
-  
+
+.quote-block blockquote::before {
+    content: "“";
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(129, 86, 180, 0.28);
+    font-family: built tilting;
+    font-size: 150px;
+    line-height: 1;
+    pointer-events: none;
+}
+
 .quote-block cite {
     display: block;
-    margin-top: 20px;
-    font-style: normal;
+    width: fit-content;
+    margin: 18px auto 34px;
     color: var(--green);
-    font-size: 18px;
+    font-style: normal;
+    font-size: 13px;
+    font-weight: 900;
     font-family: open_sans;
+    letter-spacing: 0.8px;
+}
+
+.quote-block cite:last-of-type {
+    margin-bottom: 0;
 }
 
 
 
 
-/* Common mistakes section */
+
+
+/* common nutrition mistakes */
 .mistake-list {
+    position: relative;
+    padding: 90px 7% 110px;
+    background: #050505;
+    color: var(--white);
     font-family: open_sans;
-    padding-top: 40px;
+    overflow: hidden;
+}
+
+.mistake-list::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.028) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.028) 1px, transparent 1px);
+    background-size: 44px 44px;
+    opacity: 0.28;
+    pointer-events: none;
+}
+
+
+.mistake-list h2 {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 1150px;
+    margin: 0 auto 75px;
+    font-size: 60px;
+    line-height: 0.95;
+    font-family: built tilting;
+    color: var(--dark_purple);
+    text-transform: uppercase;
 }
 
 .mistake-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-}
-
-.mistake-list {
-    padding: 0px 7%;
-    background-color: var(--bg_color);
-    color: var(--white);
-    font-family: open_sans;
-}
-
-.mistake-list h2 {
-    text-align: center;
-    font-size: 60px;
-    font-family: 'built tilting';
-    color: var(--dark_purple);
-    margin-bottom: 50px;
-}
-
-.mistake-grid{
+    position: relative;
+    z-index: 2;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 30px;
+    gap: 26px;
     width: 100%;
     align-items: start;
 }
-  
-.accordion-mistake{
-    width: auto;          
-    border-radius: 20px;
-    overflow: hidden;
+
+.accordion-mistake {
     position: relative;
+    width: auto;
+    overflow: hidden;
+    border-radius: 24px;
     color: var(--white);
-    transition: all .4s ease;
+    background:
+        linear-gradient(145deg, rgba(129, 86, 180, 0.2), rgba(129, 86, 180, 0.06)),
+        #111118;
+    border: 1px solid rgba(129, 86, 180, 0.28);
+    box-shadow: 0 18px 42px rgba(0, 0, 0, 0.3);
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.accordion-mistake:hover {
+    transform: translateY(-4px);
+    border-color: rgba(57, 255, 20, 0.24);
+    box-shadow:
+        0 28px 64px rgba(0, 0, 0, 0.45),
+        0 0 24px rgba(129, 86, 180, 0.12);
 }
 
 .accordion-mistake.open {
-    transition: all 0s ease;
-    background: none !important;
+    background: transparent;
+    border-color: rgba(57, 255, 20, 0.3);
+    box-shadow:
+        0 24px 56px rgba(0, 0, 0, 0.42),
+        0 0 24px rgba(129, 86, 180, 0.1);
 }
 
 .accordion-header {
-    padding: 20px;
+    position: relative;
+    z-index: 4;
+    min-height: 58px;
+    padding: 16px 22px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 2;
-    position: relative;
-    background-color: var(--fblack);
-    transition: background-color 0.4s ease;
-}
-
-.accordion-mistake.open .accordion-header {
-    background: none !important;
-    background-color: transparent !important;
-    box-shadow: none;
-    box-shadow: 0 0 12px rgba(129, 86, 180, 0.15);
+    gap: 16px;
+    background: transparent;
+    cursor: pointer;
 }
 
 .accordion-header h3 {
     margin: 0;
-    font-size: 1.3rem;
-    font-family: open_sans;
-    z-index: 3;
+    color: var(--white);
+    font-size: 22px;
+    line-height: 1;
+    font-family: built tilting;
+    text-transform: uppercase;
 }
 
 .accordion-header svg {
+    width: 26px;
+    height: 26px;
+    min-width: 26px;
+    color: var(--green);
     transition: transform 0.3s ease;
     z-index: 3;
+}
+
+.accordion-mistake.open .accordion-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 5;
+    background: transparent !important;
+    box-shadow: none;
 }
 
 .accordion-mistake.open .accordion-header svg {
@@ -891,118 +905,273 @@
 
 .accordion-body {
     display: none;
-    padding: 60px 20px;
-    color: white;
-    transition: all 0.4s ease;
+    position: relative;
+    z-index: 2;
+    padding: 82px 22px 22px;
+    min-height: 170px;
+    margin-top: 0;
+    color: rgba(255, 255, 255, 0.82);
     font-family: open_sans;
-    animation: fadeIn 0.4s ease;
-    margin-top: -70px;
-    height: 175px;
+    font-size: 15.5px;
+    line-height: 1.65;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    border-radius: 20px;
+    border-radius: 24px;
+    animation: fadeIn 0.35s ease;
+}
+
+.accordion-body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+        linear-gradient(to bottom, rgba(5, 5, 5, 0.52), rgba(5, 5, 5, 0.82)),
+        linear-gradient(135deg, rgba(129, 86, 180, 0.18), transparent 60%);
+    pointer-events: none;
 }
 
 .accordion-body h3 {
-    margin-top: 40px;
-    font-size: 1.4rem;
-    font-family: open_sans;
+    margin: 0 0 12px;
+    padding-top: 18px;
+    color: var(--green);
+    font-size: 24px;
+    line-height: 1;
+    font-family: built tilting;
+    text-transform: uppercase;
+}
+
+.accordion-body p {
+    margin: 0;
 }
 
 .accordion-mistake.open .accordion-body {
     display: block;
-    box-shadow: none;
-} 
-
-
-
-/* Animation */
-@keyframes fadeIn {
-    from { opacity: 0; 
-        transform: translateY(-20px); 
-    }
-    to { opacity: 1; 
-        transform: translateY(-0px); 
-    }
-} */
-
-
-/* meal carousel */
-.meal-carousel-section {
-    background-color: var(--bg_color);
-    color: var(--white);
-    font-family: open_sans;
 }
 
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+/* Meal cards */
+.meal-carousel-section {
+    position: relative;
+    padding: 95px 0 105px;
+    color: var(--white);
+    background:
+        radial-gradient(circle at 18% 18%, rgba(129, 86, 180, 0.28), transparent 28%),
+        radial-gradient(circle at 85% 65%, rgba(57, 255, 20, 0.08), transparent 26%),
+        linear-gradient(135deg, var(--dark_purple) 0%, #171220 48%, #050505 100%);
+    font-family: open_sans;
+    overflow: hidden;
+}
+
+.meal-carousel-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 44px 44px;
+    opacity: 0.16;
+    pointer-events: none;
+}
+
+
 .meal-carousel-section h2 {
+    position: relative;
+    z-index: 2;
+    margin: 0 0 18px;
     text-align: center;
-    font-size: 40px;
-    font-family: 'built tilting';
-    color: var(--dark_purple);
+    color: var(--white);
+    font-size: 75px;
+    line-height: 0.95;
+    font-family: built tilting;
+    text-transform: uppercase;
+}
+
+.meal-carousel-section h2 span {
+    color: var(--green);
 }
 
 .carousel-container {
-    overflow: hidden;
     position: relative;
-    width: 98vw;
-    height: 400px;
-    padding-top: 30px;
-    margin-bottom: 50px;
+    z-index: 2;
+    overflow: hidden;
+    width: 100%;
+    padding: 42px 0 12px;
 }
 
+.carousel-container::before,
+.carousel-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    z-index: 4;
+    width: 130px;
+    height: 100%;
+    pointer-events: none;
+}
+
+.carousel-container::before {
+    left: 0;
+    background: linear-gradient(
+        to right,
+        rgba(103, 49, 168, 0.836) 0%,
+        rgba(103, 49, 168, 0.582) 28%,
+        rgba(103, 49, 168, 0.178) 58%,
+        transparent 100%
+    );
+}
+
+.carousel-container::after {
+    right: 0;
+    background: linear-gradient(
+        to left,
+        rgba(0, 0, 0, 0.788) 0%,
+        rgba(0, 0, 0, 0.5) 38%,
+        rgba(0, 0, 0, 0.151) 68%,
+        transparent 100%
+    );
+}
 .carousel-track {
     display: flex;
-    gap: 30px;
-    animation: scrollCarousel 59s linear infinite;
+    gap: 22px;
     width: max-content;
+    animation: scrollCarousel 62s linear infinite;
+}
+
+.carousel-track:hover {
+    animation-play-state: paused;
 }
 
 .meal-card {
-    min-width: 300px;
-    background-color: var(--fblack);
-    border-radius: 20px;
-    padding: 10px;
-    text-align: center;
-    box-shadow: 0 0 12px rgba(129, 86, 180, 0.15);
+    position: relative;
     flex-shrink: 0;
-    transition: transform 0.3s ease;
+    width: 320px;
+    height: 430px;
+    overflow: hidden;
+    border-radius: 28px;
+    background: #050505;
+    border: 1px solid rgba(129, 86, 180, 0.16);
+    box-shadow:
+        0 26px 65px rgba(0, 0, 0, 0.38),
+        0 0 0 1px rgba(255, 255, 255, 0.03);
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
 }
 
 .meal-card:hover {
-    transform: scale(1.05);
+    transform: translateY(-8px);
+    border-color: rgba(57, 255, 20, 0.2);
+    box-shadow:
+        0 34px 82px rgba(0, 0, 0, 0.5),
+        0 0 24px rgba(129, 86, 180, 0.16);
 }
+
 
 .meal-card img {
-    width: 25vw;
-    border-radius: 12px;
-    height: 220px;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    margin-bottom: 15px;
+    display: block;
+    filter: saturate(1.18) contrast(1.08) brightness(1.03);
+    transition:
+        transform 0.45s ease,
+        filter 0.45s ease;
 }
 
-.meal-card h3 {
-    font-size: 1.3rem;
-    margin-bottom: 10px;
-    font-family: open_sans;
-    color: var(--white);
+.meal-card:hover img {
+    transform: scale(1.08);
+    filter: brightness(0.84) saturate(1.24) contrast(1.1);
 }
 
-.meal-card p {
-    font-size: 0.95rem;
-    margin: 2px 0;
-    color: var(--white);
+.meal-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+        linear-gradient(to top, rgba(0, 0, 0, 0.84), rgba(0, 0, 0, 0.08) 62%),
+        linear-gradient(135deg, rgba(129, 86, 180, 0.3), rgba(57, 255, 20, 0.05) 65%, transparent 100%);
+    pointer-events: none;
+}
+
+.meal-overlay {
+    position: absolute;
+    left: 22px;
+    right: 22px;
+    bottom: 22px;
+    z-index: 2;
+}
+
+.meal-overlay span {
+    display: inline-flex;
+    margin-bottom: 12px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    color: var(--black);
+    background: var(--green);
     font-family: open_sans;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 0.8px;
+    box-shadow: 0 12px 26px rgba(57, 255, 20, 0.18);
+}
+
+.meal-overlay h3 {
+    margin: 0;
+    color: var(--white);
+    font-family: built tilting;
+    font-size: 34px;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.macro-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.macro-tags small {
+    padding: 8px 10px;
+    border-radius: 999px;
+    background: rgba(129, 86, 180, 0.22);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: rgba(255, 255, 255, 0.88);
+    font-family: open_sans;
+    font-size: 11.5px;
+    font-weight: 850;
 }
 
 @keyframes scrollCarousel {
     0% {
         transform: translateX(0);
     }
+
     100% {
-        transform: translateX(-78.1%);
+        transform: translateX(-50%);
     }
 }
+
+
+
 
 
 /* PC responsiveness */
@@ -1222,12 +1391,48 @@
     }
 
     /* meal cards */
-    .meal-card img {
-        width: 70vw;
-        border-radius: 12px;
-        height: 220px;
-        object-fit: cover;
-        margin-bottom: 15px;
+    .meal-carousel-section {
+        padding: 78px 0 88px;
+    }
+
+    .meal-carousel-section h2 {
+        font-size: 48px;
+        padding: 0 18px;
+    }
+
+    .carousel-container {
+        padding-top: 34px;
+    }
+
+    .carousel-container::before,
+    .carousel-container::after {
+        width: 58px;
+    }
+
+    .carousel-track {
+        gap: 16px;
+        animation-duration: 70s;
+    }
+
+    .meal-card {
+        width: 270px;
+        height: 390px;
+        border-radius: 24px;
+    }
+
+    .meal-overlay {
+        left: 18px;
+        right: 18px;
+        bottom: 18px;
+    }
+
+    .meal-overlay h3 {
+        font-size: 29px;
+    }
+
+    .macro-tags small {
+        font-size: 11px;
+        padding: 7px 9px;
     }
 }
 
