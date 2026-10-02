@@ -163,6 +163,9 @@ ul li ul:focus {
   margin-left: -10px;
 }
 
+
+
+/* cover page */
 .cover {
   position: relative;
   width: 100%;
@@ -242,7 +245,6 @@ ul li ul:focus {
   font-size: 18px;
   line-height: 1.65;
 }
-
 
 
 .hero-nuggets {
@@ -730,6 +732,8 @@ ul li ul:focus {
   white-space: nowrap;
   text-transform: uppercase;
 }
+
+
 /* ----------------------------------------------------------------------- */
 
 
@@ -2279,45 +2283,97 @@ ul li ul:focus {
   }
 
 
-
-  /* cover */
-  .cover{
-    width: 100%;
-  }
-
-  .hero-visual{
-    display: none;
-  }
-
-
-
   body{
     background-color: var(--bg_color);
     background-size: 100%, 100%;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    /* margin-left: 3%; */
     width: 100%;
+  }
+
+
+
+
+
+  /* first page ------------------------------------------ */
+  .cover {
+    width: 100%;
+    min-height: auto;
+    margin-top: -72px;
+    padding: 115px 0 58px;
+    overflow: hidden;
+  }
+
+  .hero-inner {
+    width: 100%;
+    min-height: auto;
+    max-width: none;
+    display: block;
+    margin: 0;
+  }
+
+  .hero-content {
+    max-width: none;
+    width: 100%;
+    padding: 0 22px;
+    box-sizing: border-box;
+  }
+
+  .hero-tag {
+    margin-bottom: 26px;
+    padding: 8px 14px;
+    font-size: 11px;
+    letter-spacing: 1.4px;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(54px, 15vw, 72px);
+    line-height: 0.92;
+    letter-spacing: 0.5px;
+  }
+
+  .hero-content h1::after {
+    width: 155px;
+    height: 5px;
+    margin-top: 26px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-text {
+    max-width: 100%;
+    margin-top: 28px;
+    font-size: 15.5px;
+    line-height: 1.65;
   }
 
   .hero-nuggets {
     position: relative;
     inset: auto;
     z-index: 3;
-    width: 90%;
-    margin: 25px auto 0;
+    width: 100%;
+    margin: 24px 0 0;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
+    justify-content: flex-start;
+    gap: 9px;
     pointer-events: none;
   }
 
   .hero-nuggets p {
     position: static;
-    font-size: 13px;
-    padding: 10px 14px;
+    margin: 0;
+    padding: 9px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    white-space: nowrap;
     animation: nuggetFloat 4.8s ease-in-out infinite;
+  }
+
+  .hero-nuggets p::before {
+    width: 7px;
+    height: 7px;
+    margin-right: 7px;
   }
 
   .hero-nuggets p:nth-child(1),
@@ -2338,37 +2394,278 @@ ul li ul:focus {
     animation-delay: 1.5s;
   }
 
-  /* the whys */
-  .trainer{
-    margin-top: -30px;
-    margin-left: 15px;
-    float: right;
-    height: 550px;
-    width: 45%;
+  .hero-buttons {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 13px;
+    margin-top: 34px;
+  }
+
+  .hero-btn {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 15px 22px;
+    font-size: 15px;
+  }
+
+  .hero-btn.primary {
+    min-width: 0;
+    padding: 16px 22px;
+  }
+
+  .hero-visual {
     display: none;
   }
-  .the_whys h1{
-    font-family: built tilting;
-    color: var(--dark_purple);
-    font-size: 42px;
+
+  .hero-offer {
+    position: relative;
+    margin-top: 36px;
   }
-  
-  .the_whys p{
-    font-size: 16px;
-    font-family: open_sans;
-    color: var(--white);
+
+  .offer-track span {
+    padding: 11px 24px;
+    font-size: 12px;
   }
+
+
+
+
+  /* the whys */
+  .why-section {
+    padding: 85px 0 80px;
+  }
+
+  .why-section::before {
+    width: 300px;
+    height: 300px;
+    left: -160px;
+    top: 120px;
+  }
+
+  .why-inner {
+    width: 100%;
+    max-width: none;
+    display: flex;
+    flex-direction: column;
+    gap: 34px;
+    padding: 0 22px;
+    box-sizing: border-box;
+  }
+
+  .why-copy {
+    display: contents;
+  }
+
+  .why-copy .section-tag {
+    order: 1;
+    width: fit-content;
+    margin: 0;
+  }
+
+  .why-copy h1 {
+    order: 2;
+    max-width: 100%;
+    font-size: clamp(48px, 13vw, 64px);
+    line-height: 0.92;
+  }
+
+  .why-image {
+    order: 3;
+    width: 100%;
+    min-height: auto;
+    margin-top: 4px;
+  }
+
+  .why-image .trainer {
+    width: 100%;
+    height: 430px;
+    border-radius: 24px;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  .why-image::before {
+    inset: 14px -10px -14px 10px;
+    border-radius: 24px;
+  }
+
+  .why-image::after {
+    border-radius: 24px;
+  }
+
+  .why-copy > p:not(.section-tag) {
+    order: 4;
+    max-width: 100%;
+    margin: 0;
+    font-size: 15.5px;
+    line-height: 1.7;
+  }
+
+  .why-copy > p:not(.section-tag):first-of-type {
+    margin-top: 2px;
+  }
+
+  .why-shifts {
+    order: 5;
+    width: 100%;
+    max-width: 100%;
+    margin-top: 4px;
+    gap: 13px;
+  }
+
+  .shift-item {
+    grid-template-columns: 48px 1fr;
+    gap: 15px;
+    padding: 18px 16px;
+    border-radius: 18px;
+  }
+
+  .shift-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 13px;
+    font-size: 22px;
+  }
+
+  .shift-copy h3 {
+    font-size: 27px;
+  }
+
+  .shift-copy p {
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+
+  .shift-item strong {
+    grid-column: 2;
+    width: fit-content;
+    margin-top: 4px;
+    padding: 8px 11px;
+    font-size: 11.5px;
+  }
+
+  .shift-item:hover {
+    transform: translateY(-4px);
+  }
+
+
+
+  /* ========================== service ting ====================*/
+  .coach_king_services{
+    height: 800px;
+  }
+
+  .img-accordion{
+    height: 500px;
+  }
+
+  .what_to_offer {
+    font-size: 50px;
+  }
+
 
 
   /* ------------------------------------------ */
   /* review section */
   /* ------------------------------------------ */
-  .people{
+  .review_section{
     display: none;
   }
-  .review_h1{
+
+
+
+
+
+  /* ===================== FORM =============================== */
+
+  .form_section {
+    margin-top: -30px;
+    padding: 80px 0 85px;
+    min-height: auto;
+    background-attachment: scroll;
+    background-position: center;
+  }
+
+  .form-wrap {
+    width: 100%;
+    max-width: none;
+    display: block;
+    padding: 0 22px;
+    box-sizing: border-box;
+  }
+
+  .form-copy{
+    margin-bottom: 100px;
+  }
+  .form-copy h1 {
+    font-size: clamp(48px, 13vw, 64px);
+    line-height: 0.92;
+  }
+
+  .form-copy h1::after {
+    width: 84px;
+    height: 5px;
+    margin-top: 22px;
+  }
+
+  .form-copy > p:not(.section-tag) {
+    max-width: 100%;
+    margin-top: 24px;
+    font-size: 15.5px;
+    line-height: 1.7;
+  }
+
+  .form-highlights {
     display: none;
   }
+
+
+  .form_section form {
+    width: 100%;
+    margin-top: 38px;
+    padding: 26px 20px;
+    box-sizing: border-box;
+    border-radius: 22px;
+  }
+
+  .form_section form h2 {
+    font-size: 34px;
+    line-height: 0.95;
+    margin-bottom: 24px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 13px;
+  }
+
+  .form_section form #fname,
+  .form_section form #lname,
+  .form_section form #location,
+  .form_section form input[type="tel"] {
+    padding: 14px 14px;
+    font-size: 14px;
+  }
+
+  .terms {
+    align-items: flex-start;
+    margin-top: 18px;
+    font-size: 13px;
+  }
+
+  .form_section form input[type="checkbox"] {
+    flex: 0 0 auto;
+    margin-top: 2px;
+  }
+
+  .form_section form .submit-btn {
+    margin-top: 24px;
+    padding: 15px 18px;
+    font-size: 16px;
+  }
+
+/* ============================================================= */
 
 
 
@@ -2459,36 +2756,180 @@ ul li ul:focus {
   
 
   /* Results program */
-  .results{
-    margin-top:-100px;
-    background:var(--bg_color);
-    padding:50px 10px 0;
-    height:550px;
-    width:95%;
-    color:var(--white);
-    margin-bottom:100px;
-  }
-  .results h1{
-    font-size: 50px;
+  .results {
+    margin-top: -70px;
+    min-height: 1000px;
+    padding: 75px 0 85px;
   }
 
-  #contactForm{
-    width: 80%;
-    margin-left: 10%;
-    margin-top: -10%;
+  .results-inner {
+    width: 100%;
+    max-width: none;
+    padding: 0 22px;
+    box-sizing: border-box;
+  }
+
+  .results-heading {
+    max-width: 100%;
+    margin-bottom: 34px;
+  }
+
+  .results-heading h1 {
+    font-size: clamp(46px, 13vw, 62px);
+    line-height: 0.92;
+  }
+
+  .results-heading h1::after {
+    width: 84px;
+    height: 5px;
+    margin-top: 22px;
+  }
+
+  .results-heading > p:not(.section-tag) {
+    max-width: 100%;
+    margin-top: 24px;
+    font-size: 15.5px;
+    line-height: 1.7;
+  }
+
+  .gallery {
+    width: 100%;
+    overflow: visible;
+  }
+
+  .gallery-cell {
+    width: 86%;
+    min-height: auto;
+    margin-right: 16px;
+    border-radius: 24px;
+    display: block;
+  }
+
+  .result-img {
+    width: 100%;
+    min-height: 0;
+    height: 285px;
+  }
+
+  .result-img::after {
+    background:
+      linear-gradient(to top, rgba(0,0,0,0.45), transparent 55%);
+  }
+
+  .result-img img {
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .gallery-cell .copy {
+    padding: 28px 24px 30px;
+  }
+
+  .gallery-cell .copy span {
+    margin-bottom: 13px;
+    font-size: 11px;
+  }
+
+  .gallery-cell h2 {
+    font-size: 42px;
+  }
+
+  .gallery-cell p {
+    margin-top: 15px;
+    font-size: 14.5px;
+    line-height: 1.6;
+  }
+
+  .result-tags {
+    margin-top: 20px;
+    gap: 8px;
+  }
+
+  .result-tags small {
+    padding: 7px 10px;
+    font-size: 11px;
+  }
+
+  .results .flickity-prev-next-button {
+    width: 42px;
+    height: 42px;
+  }
+
+  .results .flickity-prev-next-button.previous {
+    left: -6px;
+  }
+
+  .results .flickity-prev-next-button.next {
+    right: -6px;
   }
 
 
-  /* service ting */
-  .coach_king_services{
-    height: 800px;
+
+
+  /* =============================== JTC ======================== */
+  .JTC {
+    padding: 100px 0;
+    background-attachment: scroll;
+    height: 550px;
+    margin-top: -70px;
   }
 
-  .img-accordion{
-    height: 500px;
+  .jtc-inner {
+    width: 100%;
+    max-width: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 34px 22px;
+    border-radius: 0;
+    box-sizing: border-box;
+    text-align: left;
   }
 
-  .what_to_offer {
-    font-size: 50px;
+  .jtc-ticket {
+    width: fit-content;
+    min-width: 150px;
+    padding: 20px 24px;
+    transform: rotate(-2deg);
   }
+
+  .jtc-ticket span {
+    font-size: 56px;
+  }
+
+  .jtc-ticket p {
+    font-size: 11.5px;
+  }
+
+  .jtc-copy h2 {
+    font-size: clamp(48px, 14vw, 66px);
+    line-height: 0.92;
+  }
+
+  .jtc-copy h2::after {
+    width: 78px;
+    height: 4px;
+    margin-top: 20px;
+  }
+
+  .jtc-copy p {
+    max-width: 100%;
+    margin-top: 22px;
+    font-size: 15.5px;
+    line-height: 1.7;
+  }
+
+  .jtc-btn {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 15px 22px;
+    font-size: 15px;
+  }
+
+
+
+
+
 }

@@ -117,19 +117,6 @@
     linear-gradient(135deg, #050608 0%, #11141b 55%, #17121e 100%);
 }
 
-.about-hero::before {
-  content: "ABOUT";
-  position: absolute;
-  left: -16px;
-  bottom: -35px;
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.055);
-  font-family: built tilting, sans-serif;
-  font-size: clamp(120px, 18vw, 280px);
-  letter-spacing: 10px;
-  pointer-events: none;
-}
-
 .about-hero::after {
   content: "";
   position: absolute;
