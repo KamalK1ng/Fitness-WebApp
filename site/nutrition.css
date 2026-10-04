@@ -219,7 +219,6 @@
     position: relative;
     z-index: 2;
     max-width: 1180px;
-    margin: 0 auto;
     display: grid;
     grid-template-columns: 0.9fr 1.1fr;
     gap: 70px;
@@ -1227,9 +1226,6 @@
 /* ------------------------------------------------------- */
 @media (max-width: 760px) {
     /* our mission */
-    .nutrition-manifesto {
-        padding: 40px 18px 45px;
-    }
 
     .nutrition-manifesto-inner {
         max-width: 680px;
@@ -1239,6 +1235,7 @@
 
     .manifesto-heading {
         max-width: 620px;
+        margin-left: 20px;
     }
 
     .manifesto-heading h2 {
@@ -1329,58 +1326,143 @@
         padding-right: 10px;
     }
 
-    /* ---------------------------- */
+
+    /* ---------------------------------------------------- */
     /* nutritional wheel */
-    /* ---------------------------- */
+    /* ---------------------------------------------------- */
     .nutrition-wheel-section {
-        padding-top: 60px;
-        padding-bottom: 60px;
-    }
-      
-    .nutrition-wheel-section h2 {
-        font-size: 42px;
-        font-family: 'built tilting';
-        color: var(--dark_purple);
-        margin-bottom: 60px;
-    }
-      
-    .wheel-grid {
-        gap: 10px;
-        margin-bottom: 20px;
-    }
-      
-    .wheel-item {
-        padding: 20px 15px;
-        width: 90px;
-        height: 120px;
+        padding-top: 75px;
+        padding-bottom: 130px;
+      }
+    
+      .nutrition-wheel-inner {
+        width: 100%;
+        max-width: none;
+        padding: 0 18px;
+        box-sizing: border-box;
+      }
+    
+      .wheel-heading {
+        max-width: 100%;
+        margin-bottom: 45px;
+      }
+    
+      .wheel-heading span {
+        font-size: 11px;
+        padding: 8px 14px;
+      }
+    
+      .wheel-heading h2 {
+        font-size: clamp(42px, 12vw, 58px);
+        line-height: 0.95;
+      }
+    
+      .wheel-heading p {
+        font-size: 14.5px;
+        line-height: 1.65;
+      }
+    
+      .nutrition-system {
+        min-height: 620px;
+        transform: scale(0.82);
+        transform-origin: top center;
+        margin-bottom: -95px;
+      }
+    
+      .nutrition-system::before {
+        width: 430px;
+        height: 430px;
+      }
+    
+      .nutrition-system::after {
+        width: 305px;
+        height: 305px;
+      }
+    
+      .system-hub {
+        width: 235px;
+        min-height: 235px;
+        padding: 26px 22px;
+      }
+    
+      .hub-ring {
+        width: 58px;
+        height: 58px;
+        margin-bottom: 14px;
+      }
+    
+      .hub-ring span {
+        font-size: 28px;
+      }
+    
+      .system-hub h3 {
+        font-size: 28px;
+        margin-bottom: 10px;
+      }
+    
+      .system-hub p {
+        font-size: 12.5px;
+        line-height: 1.45;
+      }
+    
+      .system-item {
+        width: 205px;
+        min-height: 128px;
+        padding: 17px;
         border-radius: 20px;
-    }
-      
-    .wheel-item .icon {
-        height: 30px;
-        width: 30px;
-        color: var(--green);
-        margin-bottom: 15px;
-    }
-      
-    .wheel-item p {
-        font-family: open_sans;
-        font-size: 14px;
-        color: var(--white);
-        margin: 0;
-    }
-      
-    .bottom-row {
-        margin-top: 25px; /* slight visual stack overlap */
-        gap: 20px;
-    }
+      }
+    
+      .system-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 13px;
+        margin-bottom: 12px;
+      }
+    
+      .system-icon svg {
+        width: 21px;
+        height: 21px;
+      }
+    
+      .system-item h3 {
+        font-size: 22px;
+        margin-bottom: 7px;
+      }
+    
+      .system-item p {
+        font-size: 12.5px;
+        line-height: 1.45;
+      }
+    
+      .item-1 {
+        top: -15px;
+        left: -18px;
+      }
+    
+      .item-2 {
+        top: 5px;
+        right: -58px;
+      }
+    
+      .item-3 {
+        display: none;
+      }
+    
+      .item-4 {
+        bottom: -45px;
+        left: -50px;
+      }
+    
+      .item-5 {
+        bottom: -40px;
+        right: -10px;
+      }
+
+
 
 
 
     /* common mistakes */
-    .mistake-list{
-        margin-top: 60px;
-    }
     .mistake-grid {
         display: inline-block;
         /* grid-template-columns: repeat(3, 1fr); */

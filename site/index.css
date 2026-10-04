@@ -2552,16 +2552,86 @@ ul li ul:focus {
 
 
   /* ========================== service ting ====================*/
-  .coach_king_services{
-    height: 800px;
+  .coach_king_services {
+    margin-top: -40px;
+    padding: 75px 0 85px;
+    min-height: auto;
   }
 
-  .img-accordion{
-    height: 500px;
+  .services-inner {
+    width: 100%;
+    max-width: none;
+    padding: 0 18px;
+    box-sizing: border-box;
   }
 
-  .what_to_offer {
-    font-size: 50px;
+  .services-heading {
+    max-width: 100%;
+    margin-bottom: 34px;
+  }
+
+  .services-heading h1 {
+    font-size: clamp(44px, 13vw, 62px);
+    line-height: 0.95;
+  }
+
+  .services-heading > p:not(.section-tag) {
+    max-width: 100%;
+    margin-top: 22px;
+    font-size: 15.5px;
+    line-height: 1.7;
+  }
+
+  .service-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    height: auto;
+    gap: 18px;
+  }
+
+  .service-card,
+  .service-card:hover,
+  .service-cards:hover .service-card:not(:hover) {
+    flex: none;
+    width: 100%;
+    height: 420px;
+    transform: none;
+  }
+
+  .service-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .service-overlay {
+    left: 22px;
+    right: 22px;
+    bottom: 22px;
+  }
+
+  .service-overlay span {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+
+  .service-overlay h2 {
+    font-size: 42px;
+    max-width: 280px;
+  }
+
+  .service-overlay p {
+    max-width: 310px;
+    margin-top: 12px;
+    font-size: 14.5px;
+    line-height: 1.55;
+  }
+
+  .service-tags {
+    margin-top: 16px;
+  }
+
+  .service-tags small {
+    padding: 7px 10px;
+    font-size: 11.5px;
   }
 
 
